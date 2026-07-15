@@ -1,8 +1,8 @@
 {
   "slug": "web",
   "clientName": "web",
-  "photoCount": 4,
-  "updatedAt": "2026-07-15T13:01:49.537Z",
+  "photoCount": 5,
+  "updatedAt": "2026-07-15T13:02:45.895Z",
   "photos": [
     {
       "id": "1DyTq56b3rvmGjvsQdWGGIdgAY7_kAhY8",
@@ -17,6 +17,11 @@
     {
       "id": "1Q7k-PgRV6Fgv28lt0C9w9_T1VpPrvOf1",
       "name": "IMG_0752.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1BWx48_N5ufL26BTTwWRpN1OMO61HCmzY",
+      "name": "IMG_4971.jpg",
       "mimeType": "image/jpeg"
     },
     {
