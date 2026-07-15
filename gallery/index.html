@@ -80,7 +80,7 @@ button{font-family:inherit;cursor:pointer;background:none;border:none;color:inhe
 .photo-item{
   position:relative;break-inside:avoid;margin-bottom:14px;
   border-radius:3px;overflow:hidden;cursor:pointer;
-  background:var(--oatmeal-mid);
+  background:var(--oatmeal-mid);min-height:120px;
 }
 .photo-item img{width:100%;transition:transform .5s ease;}
 .photo-item:hover img{transform:scale(1.035);}
@@ -362,7 +362,7 @@ function renderGallery(){
     const item = document.createElement('div');
     item.className = 'photo-item';
     item.innerHTML = `
-      <img src="${p.thumbSrc}" loading="lazy" alt="${p.name || ('Фото ' + (idx+1))}">
+      <img src="${p.thumbSrc}" alt="${p.name || ('Фото ' + (idx+1))}">
       ${p.type === 'video' ? '<span class="video-badge">▶</span>' : ''}
       <button class="pi-heart" data-id="${p.id}">♡</button>
     `;
