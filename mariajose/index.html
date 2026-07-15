@@ -52,6 +52,7 @@ button{font-family:inherit;cursor:pointer;background:none;border:none;color:inhe
   position:relative;height:64vh;min-height:420px;
   background-size:cover;background-position:center 30%;
   display:flex;align-items:flex-end;
+  background-color:var(--oatmeal-mid);
 }
 .hero::after{
   content:"";position:absolute;inset:0;
@@ -74,6 +75,7 @@ button{font-family:inherit;cursor:pointer;background:none;border:none;color:inhe
 
 .gallery-wrap{max-width:1400px;margin:0 auto;padding:44px 28px 140px;}
 .gallery-grid{column-count:4;column-gap:14px;}
+.gallery-empty{padding:60px 20px;text-align:center;color:var(--mist);font-size:14px;line-height:1.6;}
 .photo-item{
   position:relative;break-inside:avoid;margin-bottom:14px;
   border-radius:3px;overflow:hidden;cursor:pointer;
@@ -220,7 +222,7 @@ button{font-family:inherit;cursor:pointer;background:none;border:none;color:inhe
 
 <header class="site-header">
   <div class="brand-mark">Alyona Kononenko</div>
-  <div class="ig-handle">@alyona_kononenko_</div>
+  <div class="ig-handle">@alyona.photographer.malaga</div>
 </header>
 
 <section class="hero" id="heroSection">
@@ -228,9 +230,9 @@ button{font-family:inherit;cursor:pointer;background:none;border:none;color:inhe
     <div class="hero-eyebrow">Фотосессия · Малага</div>
     <h1 class="hero-name">Мария Хосе</h1>
     <div class="hero-meta">
-      <span>10 июля 2026</span>
+      <span id="photoDateLabel">Личная галерея</span>
       <span class="dot">·</span>
-      <span id="photoCountLabel">24 фото</span>
+      <span id="photoCountLabel">Загрузка…</span>
     </div>
   </div>
 </section>
@@ -241,7 +243,7 @@ button{font-family:inherit;cursor:pointer;background:none;border:none;color:inhe
 
 <footer class="site-footer">
   <div class="fname">Alyona Kononenko</div>
-  <div class="fcontact">Málaga · Marbella · +380 99 337 7335 · @alyona_kononenko_</div>
+  <div class="fcontact">Málaga · Marbella · +380 99 337 7335 · @alyona.photographer.malaga</div>
 </footer>
 
 <nav class="toolbar">
@@ -257,7 +259,7 @@ button{font-family:inherit;cursor:pointer;background:none;border:none;color:inhe
   <div class="lb-stage">
     <img id="lbImage" src="" alt="">
   </div>
-  <div class="lb-counter" id="lbCounter">1 / 24</div>
+  <div class="lb-counter" id="lbCounter">1 / 1</div>
   <div class="lb-bar">
     <button class="lb-action" id="lbFav"><span class="ic">♡</span><span class="txt">В избранное</span></button>
     <button class="lb-action" id="lbDownload"><span class="ic">↓</span><span class="txt">Скачать</span></button>
@@ -279,52 +281,94 @@ button{font-family:inherit;cursor:pointer;background:none;border:none;color:inhe
 <div class="toast" id="toast"></div>
 
 <script>
-const dims = [
-  [800,1050],[800,1250],[900,720],[800,1000],
-  [800,1300],[900,760],[800,1100],[800,950],
-  [900,700],[800,1200],[800,1000],[900,780]
-];
-const photos = [];
-for(let i=1;i<=24;i++){
-  const d = dims[(i-1)%dims.length];
-  photos.push({
-    id:i,
-    src:`https://picsum.photos/seed/alyona-mj-${i}/${d[0]}/${d[1]}`,
-    w:d[0],h:d[1]
-  });
+// Publiski redzamā, referrer-ierobežotā Google Drive API atslēga (droši embed-ot front-end kodā).
+const DRIVE_API_KEY = 'AIzaSyANjgOtmzdGe9MC38FJSNnzHqKF31FI_xc';
+
+function driveImageUrl(fileId){
+  return `https://www.googleapis.com/drive/v3/files/${fileId}?alt=media&key=${DRIVE_API_KEY}`;
 }
 
+function getSlugFromPath(){
+  const seg = location.pathname.split('/').filter(Boolean);
+  return seg[0] || 'mariajose';
+}
+
+let photos = [];
 const favorites = new Set();
 let currentIndex = 0;
 
 const grid = document.getElementById('galleryGrid');
-photos.forEach((p,idx)=>{
-  const item = document.createElement('div');
-  item.className = 'photo-item';
-  item.innerHTML = `<img src="${p.src}" loading="lazy" alt="Фото ${p.id}"><button class="pi-heart" data-id="${p.id}">♡</button>`;
-  item.querySelector('img').addEventListener('click', ()=>openLightbox(idx));
-  const heart = item.querySelector('.pi-heart');
-  heart.addEventListener('click',(e)=>{
-    e.stopPropagation();
-    toggleFavorite(p.id);
-  });
-  grid.appendChild(item);
-});
-document.getElementById('photoCountLabel').textContent = photos.length + ' фото';
+const lightbox = document.getElementById('lightbox');
+const lbImage = document.getElementById('lbImage');
+const lbCounter = document.getElementById('lbCounter');
 
-const heroImg = photos[0];
-document.getElementById('heroSection').style.backgroundImage = `url(${heroImg.src.replace(`/${heroImg.w}/${heroImg.h}`,'/1600/1000')})`;
+async function loadGallery(){
+  const slug = getSlugFromPath();
+  try{
+    const res = await fetch(`/data/${slug}.json`, {cache:'no-store'});
+    if(!res.ok) throw new Error('manifest not found: ' + res.status);
+    const manifest = await res.json();
+
+    photos = (manifest.photos || []).map(p => ({
+      id: p.id,
+      src: driveImageUrl(p.id),
+      name: p.name
+    }));
+
+    if(manifest.clientName){
+      document.title = manifest.clientName + ' — Alyona Kononenko';
+      const nameEl = document.querySelector('.hero-name');
+      if(nameEl) nameEl.textContent = manifest.clientName;
+    }
+    if(manifest.updatedAt){
+      const d = new Date(manifest.updatedAt);
+      document.getElementById('photoDateLabel').textContent = d.toLocaleDateString('ru-RU', {year:'numeric', month:'long', day:'numeric'});
+    }
+
+    renderGallery();
+  } catch(err){
+    console.error(err);
+    grid.innerHTML = '<div class="gallery-empty">Galerija vēl nav gatava vai nav atrasta.<br>Lūdzu, pārbaudi saiti vai mēģini vēlreiz vēlāk.</div>';
+    document.getElementById('photoCountLabel').textContent = '';
+  }
+}
+
+function renderGallery(){
+  grid.innerHTML = '';
+
+  if(!photos.length){
+    grid.innerHTML = '<div class="gallery-empty">Šeit vēl nav neviena foto.</div>';
+    document.getElementById('photoCountLabel').textContent = '0 фото';
+    return;
+  }
+
+  photos.forEach((p, idx) => {
+    const item = document.createElement('div');
+    item.className = 'photo-item';
+    item.innerHTML = `<img src="${p.src}" loading="lazy" alt="${p.name || ('Фото ' + (idx+1))}"><button class="pi-heart" data-id="${p.id}">♡</button>`;
+    item.querySelector('img').addEventListener('click', () => openLightbox(idx));
+    const heart = item.querySelector('.pi-heart');
+    heart.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleFavorite(p.id);
+    });
+    grid.appendChild(item);
+  });
+
+  document.getElementById('photoCountLabel').textContent = photos.length + ' фото';
+  document.getElementById('heroSection').style.backgroundImage = `url(${photos[0].src})`;
+}
 
 function updateFavUI(){
   document.getElementById('favCountWrap').textContent = favorites.size;
   document.querySelectorAll('.pi-heart').forEach(h=>{
-    const id = Number(h.dataset.id);
+    const id = h.dataset.id;
     const on = favorites.has(id);
     h.classList.toggle('on', on);
     h.textContent = on ? '♥' : '♡';
   });
   const lbFav = document.getElementById('lbFav');
-  if(lightbox.classList.contains('open')){
+  if(lightbox.classList.contains('open') && photos.length){
     const on = favorites.has(photos[currentIndex].id);
     lbFav.classList.toggle('on', on);
     lbFav.querySelector('.ic').textContent = on ? '♥' : '♡';
@@ -334,10 +378,6 @@ function toggleFavorite(id){
   if(favorites.has(id)){ favorites.delete(id); } else { favorites.add(id); showToast('Добавлено в избранное'); }
   updateFavUI();
 }
-
-const lightbox = document.getElementById('lightbox');
-const lbImage = document.getElementById('lbImage');
-const lbCounter = document.getElementById('lbCounter');
 
 function openLightbox(idx){
   currentIndex = idx;
@@ -351,14 +391,15 @@ function renderLightbox(){
   updateFavUI();
 }
 function closeLightbox(){ lightbox.classList.remove('open'); }
-function nextPhoto(){ currentIndex = (currentIndex+1) % photos.length; renderLightbox(); }
-function prevPhoto(){ currentIndex = (currentIndex-1+photos.length) % photos.length; renderLightbox(); }
+function nextPhoto(){ if(!photos.length) return; currentIndex = (currentIndex+1) % photos.length; renderLightbox(); }
+function prevPhoto(){ if(!photos.length) return; currentIndex = (currentIndex-1+photos.length) % photos.length; renderLightbox(); }
 
 document.getElementById('lbClose').addEventListener('click', closeLightbox);
 document.getElementById('lbNext').addEventListener('click', nextPhoto);
 document.getElementById('lbPrev').addEventListener('click', prevPhoto);
-document.getElementById('lbFav').addEventListener('click', ()=>toggleFavorite(photos[currentIndex].id));
+document.getElementById('lbFav').addEventListener('click', ()=>{ if(photos.length) toggleFavorite(photos[currentIndex].id); });
 document.getElementById('lbDownload').addEventListener('click', ()=>{
+  if(!photos.length) return;
   const a = document.createElement('a');
   a.href = photos[currentIndex].src;
   a.download = `alyona-kononenko-${photos[currentIndex].id}.jpg`;
@@ -386,12 +427,26 @@ document.querySelector('.lb-stage').addEventListener('touchend',(e)=>{
 });
 
 document.getElementById('downloadAllBtn').addEventListener('click', ()=>{
-  showToast('Собираем ZIP-архив со всеми фото…');
+  if(!photos.length){ showToast('Nav ko lejupielādēt'); return; }
+  showToast('Atveram katru foto lejupielādei…');
+  photos.forEach((p, i) => {
+    setTimeout(() => {
+      const a = document.createElement('a');
+      a.href = p.src;
+      a.download = `alyona-kononenko-${p.id}.jpg`;
+      a.target = '_blank';
+      a.rel = 'noopener';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    }, i * 300);
+  });
 });
 document.getElementById('shareBtn').addEventListener('click', ()=>{
   if(navigator.share){
-    navigator.share({title:'Мария Хосе — Alyona Kononenko', url:location.href}).catch(()=>{});
+    navigator.share({title: document.title, url:location.href}).catch(()=>{});
   } else {
+    navigator.clipboard?.writeText(location.href).catch(()=>{});
     showToast('Ссылка на галерею скопирована');
   }
 });
@@ -418,6 +473,8 @@ function showToast(msg){
   clearTimeout(toastTimer);
   toastTimer = setTimeout(()=>t.classList.remove('show'), 2600);
 }
+
+loadGallery();
 </script>
 </body>
 </html>
