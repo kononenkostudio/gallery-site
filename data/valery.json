@@ -1,11 +1,181 @@
 {
   "slug": "valery",
   "clientName": "Valery",
-  "photoCount": 4,
-  "updatedAt": "2026-07-15T12:53:48.973Z",
+  "photoCount": 46,
+  "updatedAt": "2026-07-15T12:54:48.938Z",
   "photos": [
     {
-      "id": "10n-9MjXNYg25Z3pJVpUQ2T26Sl99r0Fn",
+      "id": "1HLyJXSEbZD0BRJ8vdaeIdpnU19yadV2y",
+      "name": "IMG_6292.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1SOVDREYsOpZZKfzPnkCpDdK4bAE8i_Ni",
+      "name": "IMG_6509.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1FgqlAFyYuczCgCzvw6y-wN_zPcaZCMBA",
+      "name": "IMG_6126.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1BgV4BZ4UHCZDn1_BXXywvIYAVnCNNZB8",
+      "name": "IMG_6357.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1CtQvcviH4C0ObQAxAYtueY0JuBCAuyii",
+      "name": "IMG_5482.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1pSow4F7K5Dh9KN-HXLzFDQ0QcwLXr9So",
+      "name": "IMG_6314.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1Q1LsSLCVrHhpMEivUf6CLT0f2O-d4Ndv",
+      "name": "IMG_5077.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1cJnRey25Pzm3Fo25ZLs_5WSFJMaznpJD",
+      "name": "IMG_5168.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1nGsu0ZZRC-ZD1arj7BVboyMhQ03qCsix",
+      "name": "IMG_6239.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "10sdqEqOGu3lBB0HM0lmjPig9dUF5lsiN",
+      "name": "IMG_6413.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1JWp4WFi0y1DbbPMXARNVE66PF8ud0yER",
+      "name": "IMG_6862.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1KfIruXUIBDp0_-ZDMgAcGJvQG3dI24gs",
+      "name": "IMG_6386.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1HAufrDN35UW3CL_gUHQ6Dv596TVfzYGy",
+      "name": "IMG_5517.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1F9Sh_UNJFN2kmT--dPsk7FX_cuRYQQyy",
+      "name": "IMG_6821.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1tJJExSVGUMw6tR1XWt9g11nRK89XaWcy",
+      "name": "IMG_5388.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1cG1Vzsk1MV2T_k056Xxa55W0mJo1JsKy",
+      "name": "IMG_5909.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1h3i5_QwBgKXtDT8RsTK-YCi9MXmKH06k",
+      "name": "IMG_6781.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "14auo_yqFkmA2OFBvaSe2j46wnYJ7SD5S",
+      "name": "IMG_6692 (1).jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "15qjInp9UL2UajP_EwbhsTwrs_2jOds3H",
+      "name": "IMG_6743.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1K2xmzENUkUECvqAS4uT-KJ6cwFO1NIQB",
+      "name": "IMG_6692.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1DvmrOaz6EFoMAoLRC0HTw-skxBZZZVkO",
+      "name": "IMG_6749.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1SXelE4vLO4yUdsyRpP__S-Jog3pyGGZW",
+      "name": "IMG_6772.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1PqIAvHriWEmaOln0MP6ssiJeuQTV5lo2",
+      "name": "IMG_5455.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1p2r1ji-g9wdBXoanVMuuBcSNbXevJwQ5",
+      "name": "IMG_5958.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1nEWbM9tS1oNdklEHIY853Fsh-zWM1utn",
+      "name": "IMG_5358.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1S8hOBN6xnKbzAgLrbxkBecKktlR4NqC_",
+      "name": "IMG_5592.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1J4oicXqTqQtegKSqQLglSyP7aEhvWO9y",
+      "name": "IMG_6025.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "12YiS4iFS-UsGXWQh6mF-kQEencQnmDZP",
+      "name": "IMG_5682.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1CzejsJNq96dYd7o12b1ad3RdaGLuqnMJ",
+      "name": "IMG_5283.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "10ZdwG6WK5_Zvbdec9jsw7ezWlYpbrW-o",
+      "name": "IMG_5228.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1p5ZfT-dX2MXji9AujQlJb-Rt4rR1dxm-",
+      "name": "IMG_5343.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1bXZ3XoKTiZ82BUaiOv8OpBgHkwx_9nu5",
+      "name": "IMG_6768.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1CLCnM5bdRq93JXOVx585o0qsiYmBEpy1",
+      "name": "IMG_6485.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1DvNoD1ilbUGBue9EzeCcdrtDWS1PgtRh",
+      "name": "IMG_5587.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1DRJWm620G_nVfk5jsC5fuRkrh4g32VCc",
       "name": "IMG_6459.jpg",
       "mimeType": "image/jpeg"
     },
@@ -15,13 +185,53 @@
       "mimeType": "image/jpeg"
     },
     {
-      "id": "1DseaOR1nRXR5iHBkcWO5vxP2qJJo1Hnl",
-      "name": "IMG_6729.jpg",
+      "id": "1fJhcr9mQQuip7n4OqTIr-BXwhsxuWRF1",
+      "name": "IMG_6938.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "101qXaijgFeT9KoT_t0JI1W6-herJqhV8",
+      "name": "IMG_5953.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1biJ6UCAecQNxu-4u7p8lIB6Q5Mu7Z26o",
+      "name": "IMG_6701.jpg",
       "mimeType": "image/jpeg"
     },
     {
       "id": "1HmI_e5uVB9-wtCua4Ur2kZ9g74R_YcLb",
       "name": "IMG_6729 — копия.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1TLWD94ydVMA5xNkARoI3NOrrtKjdcWrt",
+      "name": "IMG_5748.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1DNmrVdsE4on_dauDtWCKNuAl61O7xntv",
+      "name": "IMG_6494.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1m91V6TyLdH6v-CpqT0ZPkyHqdCdilLLY",
+      "name": "IMG_6890.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1ftjpr4pT1K2jWZ9eRWd-P-7WyTJ6bM4p",
+      "name": "IMG_5966.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1K72EO6mkWSNv8xEXzei9Xz2oDCOxesMp",
+      "name": "IMG_6749 2.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1MMF2Dti5MtPi1T2EKCDfBSqUmbfR_TyX",
+      "name": "IMG_6729.jpg",
       "mimeType": "image/jpeg"
     }
   ]
