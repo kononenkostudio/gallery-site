@@ -1,0 +1,9 @@
+# Automātiska maršrutēšana klientu galerijām.
+# Jebkurš viena-segmenta ceļš (piem. /valery vai /alina), kuram nav sava
+# statiska faila, tiek novirzīts uz vienoto galerijas šablonu /gallery/index.html.
+# Front-end JS pats no URL nolasa slug un ielādē atbilstošo data/<slug>.json.
+# Tāpēc jaunai klienta mapei Google Drive NAV vajadzīgs neviens jauns commit šeit —
+# tiklīdz Apps Script publicē datus/<slug>.json, lapa jau strādā.
+
+/:slug      /gallery/index.html  200
+/:slug/     /gallery/index.html  200
