@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Alyona Kononenko — Фотограф в Малаге</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,700;1,9..144,300;1,9..144,400&family=Epilogue:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --terra:#C4673A;
+  --terra-deep:#8B3F1E;
+  --terra-pale:#F5E8E0;
+  --sage:#8A9A6A;
+  --sage-deep:#5A6A3A;
+  --sage-pale:#EEF2E6;
+  --oatmeal:#F4EDE0;
+  --oatmeal-mid:#EAE0CE;
+  --paper:#FAF6EE;
+  --warm-brown:#6B4F35;
+  --deep-brown:#3D2A1A;
+  --camel:#C9935A;
+  --mist:#8A7060;
+  --border:rgba(61,42,26,.10);
+  --border-strong:rgba(61,42,26,.18);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Epilogue',sans-serif;
+  background:var(--oatmeal);
+  color:var(--deep-brown);
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;}
+button{font-family:inherit;cursor:pointer;}
+
+header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:26px 32px;max-width:1100px;margin:0 auto;
+}
+.brand-mark{font-family:'Fraunces',serif;font-style:italic;font-size:19px;color:var(--deep-brown);}
+.ig-handle{font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--mist);}
+
+.hero{
+  position:relative;overflow:hidden;
+  padding:70px 32px 90px;max-width:1100px;margin:0 auto;
+  display:flex;flex-direction:column;align-items:center;text-align:center;
+}
+.hero-eyebrow{
+  font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--terra-deep);margin-bottom:18px;
+}
+.hero-name{
+  font-family:'Fraunces',serif;font-style:italic;font-weight:400;
+  font-size:clamp(40px,8vw,74px);line-height:1.05;color:var(--deep-brown);margin-bottom:22px;
+}
+.hero-tagline{
+  font-family:'Fraunces',serif;font-style:italic;font-size:clamp(18px,2.6vw,24px);
+  color:var(--warm-brown);max-width:560px;line-height:1.5;margin-bottom:38px;
+}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;}
+.btn{
+  display:inline-flex;align-items:center;gap:9px;
+  padding:15px 28px;border-radius:40px;
+  font-size:13px;font-weight:700;letter-spacing:.03em;
+  text-decoration:none;border:none;transition:all .18s;
+}
+.btn-whatsapp{background:#25D366;color:#fff;}
+.btn-whatsapp:hover{background:#1FB855;}
+.btn-instagram{background:var(--deep-brown);color:#fff;}
+.btn-instagram:hover{background:var(--warm-brown);}
+.btn .ic{font-size:16px;line-height:1;}
+
+.section{max-width:640px;margin:0 auto;padding:20px 32px 100px;}
+.section-title{
+  font-family:'Fraunces',serif;font-style:italic;font-size:30px;
+  color:var(--deep-brown);margin-bottom:10px;text-align:center;
+}
+.section-sub{
+  font-size:13px;color:var(--mist);text-align:center;margin-bottom:34px;line-height:1.6;
+}
+
+.form-card{
+  background:var(--paper);border-radius:8px;border:.5px solid var(--border);
+  padding:32px;
+}
+.field{margin-bottom:16px;}
+.field label{
+  display:block;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--mist);margin-bottom:7px;
+}
+.field input,.field textarea{
+  width:100%;padding:12px 14px;border-radius:5px;border:.5px solid var(--border-strong);
+  background:#fff;font-size:14px;color:var(--deep-brown);font-family:inherit;
+}
+.field input:focus,.field textarea:focus{outline:none;border-color:var(--terra);}
+.field textarea{resize:vertical;min-height:100px;}
+.submit-btn{
+  width:100%;padding:15px;border-radius:5px;border:none;
+  background:var(--terra);color:#fff;font-size:13px;font-weight:700;
+  letter-spacing:.05em;text-transform:uppercase;margin-top:6px;
+}
+.submit-btn:hover{background:var(--terra-deep);}
+.submit-btn:disabled{opacity:.6;cursor:default;}
+.form-msg{
+  margin-top:14px;font-size:13px;text-align:center;display:none;
+}
+.form-msg.show{display:block;}
+.form-msg.ok{color:var(--sage-deep);}
+.form-msg.err{color:#b03020;}
+
+footer{
+  border-top:.5px solid var(--border);padding:34px 32px 46px;
+  max-width:1100px;margin:0 auto;
+  display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;
+}
+footer .fname{font-family:'Fraunces',serif;font-style:italic;font-size:16px;}
+footer .fcontact{font-size:11px;color:var(--mist);letter-spacing:.03em;}
+
+@media(max-width:600px){
+  header{padding:20px 20px;}
+  .hero{padding:50px 20px 60px;}
+  .btn{padding:14px 22px;font-size:12px;}
+  .section{padding:10px 20px 70px;}
+  .form-card{padding:24px;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand-mark">Alyona Kononenko</div>
+  <a class="ig-handle" href="https://www.instagram.com/alyona.photographer.malaga/" target="_blank" rel="noopener">@alyona.photographer.malaga</a>
+</header>
+
+<section class="hero">
+  <div class="hero-eyebrow">Фотограф · Малага · Марбелья</div>
+  <h1 class="hero-name">Alyona Kononenko</h1>
+  <p class="hero-tagline">«Фотосессии, после которых влюбляешься в себя заново.»</p>
+  <div class="hero-actions">
+    <a class="btn btn-whatsapp" href="https://wa.me/380993377335" target="_blank" rel="noopener">
+      <span class="ic">&#9743;</span> Написать в WhatsApp
+    </a>
+    <a class="btn btn-instagram" href="https://www.instagram.com/alyona.photographer.malaga/" target="_blank" rel="noopener">
+      <span class="ic">&#9679;</span> Instagram
+    </a>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-title">Оставить заявку</div>
+  <p class="section-sub">Расскажите коротко о себе — отвечу лично в течение дня.</p>
+
+  <div class="form-card">
+    <form id="contactForm">
+      <div class="field">
+        <label for="name">Имя</label>
+        <input type="text" id="name" name="name" required placeholder="Ваше имя">
+      </div>
+      <div class="field">
+        <label for="contact">Email или телефон</label>
+        <input type="text" id="contact" name="contact" required placeholder="you@example.com">
+      </div>
+      <div class="field">
+        <label for="message">Сообщение</label>
+        <textarea id="message" name="message" placeholder="Расскажите, для какого момента хочется съёмку"></textarea>
+      </div>
+      <button type="submit" class="submit-btn" id="submitBtn">Отправить</button>
+      <div class="form-msg" id="formMsg"></div>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="fname">Alyona Kononenko</div>
+  <div class="fcontact">Málaga · Marbella · +380 99 337 7335 · @alyona.photographer.malaga</div>
+</footer>
+
+<script>
+const form = document.getElementById('contactForm');
+const submitBtn = document.getElementById('submitBtn');
+const formMsg = document.getElementById('formMsg');
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Отправляю...';
+  formMsg.className = 'form-msg';
+
+  const data = {
+    name: document.getElementById('name').value,
+    contact: document.getElementById('contact').value,
+    message: document.getElementById('message').value,
+    _subject: 'Новая заявка с kononenko.studio'
+  };
+
+  try {
+    const res = await fetch('https://formsubmit.co/ajax/alyona@kononenko.studio', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    if (res.ok) {
+      formMsg.textContent = 'Спасибо! Сообщение отправлено, отвечу в течение дня.';
+      formMsg.classList.add('show', 'ok');
+      form.reset();
+    } else {
+      throw new Error('bad response');
+    }
+  } catch (err) {
+    formMsg.textContent = 'Не получилось отправить. Напишите, пожалуйста, в WhatsApp.';
+    formMsg.classList.add('show', 'err');
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Отправить';
+  }
+});
+</script>
+</body>
+</html>
