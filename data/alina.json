@@ -1,388 +1,545 @@
 {
   "slug": "alina",
   "clientName": "Alina",
+  "info": {
+    "client": "Alina",
+    "date": "18.04.2026",
+    "location": "Benalmadena, Spain"
+  },
   "photoCount": 76,
-  "updatedAt": "2026-07-15T13:23:32.057Z",
+  "updatedAt": "2026-07-15T13:33:37.585Z",
   "photos": [
     {
       "id": "1cQ5Ld9mRYJgNnmGRzs51d1QTw0j1O3Uk",
       "name": "IMG_3656.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:51:54.963Z"
     },
     {
       "id": "1Vf1exCl7FYryI5BrmBHYdlEy0mzKBqzP",
       "name": "IMG_3857.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:51:49.748Z"
     },
     {
       "id": "1VlA69xmvD9V6QdDdO1rvPOww6TLY-V4x",
       "name": "IMG_3720.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:51:44.663Z"
     },
     {
       "id": "1opPiLMLfgyJcu1CiX9LRMQeldSHKUOvW",
       "name": "IMG_4542.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:51:38.670Z"
     },
     {
       "id": "1B_eA_OSTJHG_IHFWX5mNaML8VAyPQPtZ",
       "name": "IMG_4049.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:51:33.472Z"
     },
     {
       "id": "14Puub880LY16JSTDPx1GSneSjLgnlADj",
       "name": "IMG_4392.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:51:26.978Z"
     },
     {
       "id": "1Z0P0wLAITclxJ-LmjwW_VXCAvrM-sejn",
       "name": "IMG_4541.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:51:21.046Z"
     },
     {
       "id": "1g4k1Xep9_tHYxpKR-Rch-5P5A7naZ19z",
       "name": "IMG_4387.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:51:15.803Z"
     },
     {
       "id": "1yHdGTKZt77lPTeH_CN5ZzNj9dMwx0ALU",
       "name": "IMG_3742.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:50:53.965Z"
     },
     {
       "id": "1o3XlEhwm4VPUZAiRxBBYXyu8Htt6wBXb",
       "name": "IMG_4014.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:50:48.985Z"
     },
     {
       "id": "1XHJGWIWFgGLDdoGO_wKWImsoQD8P0u2R",
       "name": "IMG_3786.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:50:44.545Z"
     },
     {
       "id": "12ehQxqKncU99t2IahxGcUTO3trQZRlao",
       "name": "IMG_3824.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:50:40.083Z"
     },
     {
       "id": "1wd-AiSuo-r_-40H_vNk5tR2cVRHj6r2Y",
       "name": "IMG_3771.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:50:35.174Z"
     },
     {
       "id": "1fuK2LtVJWOLtUb5SHkKOQI9tmZP9EVQR",
       "name": "IMG_4563.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:50:27.056Z"
     },
     {
       "id": "1IqJSW_HxC_52L9tSX23qzfsJSAc_Bz_0",
       "name": "IMG_3744.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:50:21.071Z"
     },
     {
       "id": "107rzZmDQJreMnh599hqxNmSsllUqlI0W",
       "name": "IMG_3850.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:50:16.399Z"
     },
     {
       "id": "1d_x-k4poC3jiuuss0pn6x2EntxHyhB3a",
       "name": "IMG_4538.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:50:11.923Z"
     },
     {
       "id": "1L3udFytZzEMOM1rnDIvqoRkVnJrGGQbc",
       "name": "IMG_3765.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:50:07.224Z"
     },
     {
       "id": "1MFfN7p7Qn6Gn2j6B84OiMBRpLpjzEA9S",
       "name": "IMG_4383.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:50:01.937Z"
     },
     {
       "id": "17bAawpe99242EfVLUHtKeBoJwqAv5wQd",
       "name": "IMG_4345.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:49:57.492Z"
     },
     {
       "id": "1iqBWNwJURYJZLwaB8nW92fh8kD32ukpq",
       "name": "IMG_4517.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:49:52.578Z"
     },
     {
       "id": "11mq-ynYU2_3vyxz8FwqX4FEItLdJXs5b",
       "name": "IMG_4532.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:49:48.016Z"
     },
     {
       "id": "19iE004MWpi_2Ub6MKPuiZKwP1Z-jh6F0",
       "name": "IMG_4536.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:49:43.408Z"
     },
     {
       "id": "1_Y_G-H8QX8sPypG_o9h74PKHnVrVxA43",
       "name": "IMG_4372.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:49:38.757Z"
     },
     {
       "id": "1Xnxf4pdylergL616s2sN0lUbtnciDBvE",
       "name": "IMG_3931.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:49:33.360Z"
     },
     {
       "id": "1gSHC_gJp1Bqy0RGePR0Nya74smyZwR9-",
       "name": "IMG_3649.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:49:26.697Z"
     },
     {
       "id": "1csW91TddC6TglEpD9_VKWJT8v85U3ykX",
       "name": "IMG_3838.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:49:21.407Z"
     },
     {
       "id": "1NS7OUjm0sY86QpQWRgi5r_PqZddfPkFe",
       "name": "IMG_4514.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:49:16.350Z"
     },
     {
       "id": "1fzqdtQFv6dzBiw_YBrJtymC8MLDiSS24",
       "name": "IMG_4476.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:49:11.453Z"
     },
     {
       "id": "1F0yS4gzdqQAsKjpjk2Gf905VNZeVG0Yj",
       "name": "IMG_4455.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:49:06.068Z"
     },
     {
       "id": "1nbDMJkWrYylbiMu0QW62oKc7dVTCLzkF",
       "name": "IMG_3811.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:49:00.400Z"
     },
     {
       "id": "1ollBg853miS7kB2-z5ztZUqcHAtV7b-l",
       "name": "IMG_3879.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:48:53.902Z"
     },
     {
       "id": "1GGdF9FnMSrOtJLgyv8VxxOKkUMhqIJvl",
       "name": "IMG_4588.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:48:29.531Z"
     },
     {
       "id": "1YSgsZ68iJIpgCx_GZd5YswLeQtYjnxo8",
       "name": "IMG_3937.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:48:23.813Z"
     },
     {
       "id": "1bkimjnPTdsQGsXo3Jce69hBXKRbcVn19",
       "name": "IMG_3848.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:48:18.119Z"
     },
     {
       "id": "14Fzl0o1fnIcfSDKY1tvrDx_i9WZrTY3J",
       "name": "IMG_3938.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:48:13.335Z"
     },
     {
       "id": "1mqJ9JmnqfcZbTqCl0LaC6silxiMAJbpS",
       "name": "IMG_3800.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:48:08.057Z"
     },
     {
       "id": "1j7JsixfJFtknQ8s37HCOtj4RDD1kbd3c",
       "name": "IMG_4510.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:48:02.145Z"
     },
     {
       "id": "1MgumM8LcpHENKFYuUGn2LeeOMfPV3NoU",
       "name": "IMG_3808.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:47:57.297Z"
     },
     {
       "id": "16YlrotMUVP7-X5gFswXZHUasLSY2yuyE",
       "name": "IMG_3865.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:47:51.471Z"
     },
     {
       "id": "1Fb9SFEKEkahh4YG4YpRYeplsno56uSSd",
       "name": "IMG_4500.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:47:45.953Z"
     },
     {
       "id": "19v88aqrVK6pTULcqILenNMRjfQs6ZG3E",
       "name": "IMG_4615.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:47:40.145Z"
     },
     {
       "id": "1imX68o0fV7ZKktwf7lxRhrSaEy08gyGq",
       "name": "IMG_4605.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:47:34.746Z"
     },
     {
       "id": "1MypBBnVuZLlhxynJRksK1gIAMTI24aiC",
       "name": "IMG_4449.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:47:29.304Z"
     },
     {
       "id": "1QWR8DVAYvOmCS5pIAI4OcTt8NtPDPqP9",
       "name": "IMG_3748.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:47:23.725Z"
     },
     {
       "id": "17iMqDc3VJDMtTnB3LeLbQmZ12lsjhbUA",
       "name": "IMG_4574.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:47:18.919Z"
     },
     {
       "id": "1RnNrXKjlKIJB-bbaaXZAN-mxhkAlkKs_",
       "name": "IMG_4116.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:47:03.794Z"
     },
     {
       "id": "1PSjznQW2M5ZXLg-8cRIEPgQRr16Sn-hv",
       "name": "IMG_4580.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:46:04.848Z"
     },
     {
       "id": "1Z5HgT1vEHMWYDt14kXgeHEwTXPiIYoNP",
       "name": "IMG_4470.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:38:47.267Z"
     },
     {
       "id": "1okhFITdtm-TPBmSOvOLlXwgp6615NwOD",
       "name": "IMG_3755.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:35:54.944Z"
     },
     {
       "id": "1sbR3u6Gl0iC6iz4O3gkBvjQE94-J6dK8",
       "name": "IMG_3897.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:35:40.502Z"
     },
     {
       "id": "18W8SaXOqfEQSOtCr7DhB2CUslExiA9ej",
       "name": "IMG_4612.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:35:14.378Z"
     },
     {
       "id": "1zd-zv4hivLHghCZkWwsmdmJzwwB1ZhaT",
       "name": "IMG_4451.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:35:00.667Z"
     },
     {
       "id": "1nliUk03qsk3WANav3ieiofPxCvXynh1s",
       "name": "IMG_4461.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:34:19.327Z"
     },
     {
       "id": "1w7JQoNWh7WODDpsnhxOjgrE3MuJHmcWT",
       "name": "IMG_4620.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:33:43.561Z"
     },
     {
       "id": "1U70X0IqsODtwQrnwvDAbHlk9UMo-V2cw",
       "name": "IMG_3686.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:31:49.893Z"
     },
     {
       "id": "1T2_9fQZGw6bPT1wEDsPo0iId7JAz3muL",
       "name": "IMG_3635.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:31:27.753Z"
     },
     {
       "id": "1cA-HfKXVawHkouSxPblHGb5h2xNGzeoG",
       "name": "IMG_4298.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:30:58.807Z"
     },
     {
       "id": "10mEkq_-VChovMR-zl5mltM0f_7eUvQH5",
       "name": "IMG_4427.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:30:41.647Z"
     },
     {
       "id": "1hzqOFX0kPhubt9bQUbI8qEdGyPked8ri",
       "name": "IMG_4544.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:30:07.078Z"
     },
     {
       "id": "1leHxdFlVV4BosBshhxfX35yWPzzn-vmi",
       "name": "IMG_4557.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:29:33.822Z"
     },
     {
       "id": "1Ozl7U-Dzj8CwRYb41GoLHAW_yo-17ncM",
       "name": "IMG_4055.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:28:59.592Z"
     },
     {
       "id": "1DXPZ7mSnpxCSBjhbhUlkpusPOXIGaSNq",
       "name": "IMG_4121.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:28:52.347Z"
     },
     {
       "id": "1U4Iz2kPGx-5u9TelWPkRI0QgyP4G_HqI",
       "name": "IMG_4596.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:28:46.154Z"
     },
     {
       "id": "1DpgL9fKoQtz-8h1qtXw0B7XKGsTz73pX",
       "name": "IMG_3612.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:28:38.780Z"
     },
     {
       "id": "1zu8ZASEHllFQg7Rk1mf59SDFBD5YXnLd",
       "name": "IMG_3946.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:28:33.590Z"
     },
     {
       "id": "1RIIj2wFuWMO3fwUv9m7eRvJBFZKbar-z",
       "name": "IMG_4408.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:28:28.724Z"
     },
     {
       "id": "1Mmro-LpFCKyfiur-5C-UDWlGolMvE9WO",
       "name": "IMG_4099.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:28:22.460Z"
     },
     {
       "id": "1W9S6R-Y150MYPjVSTF5xOCpw01iI76Ms",
       "name": "IMG_4287.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:28:15.199Z"
     },
     {
       "id": "1a4NRTi8a6r5_4s6Wvy3M732aSItprrXV",
       "name": "IMG_3616.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:28:08.666Z"
     },
     {
       "id": "13mdsulEiCltOYzj9pp7QVofWEMdtrmt2",
       "name": "IMG_4568.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:27:50.344Z"
     },
     {
       "id": "1UxNhW_IxfUNF6Yn5TrkEW6YrAg4jp5Ry",
       "name": "IMG_4197.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:27:36.367Z"
     },
     {
       "id": "1UbM2tZx9bduTIU2C_VooxGrnZvPXbKSk",
       "name": "IMG_4151.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:27:24.615Z"
     },
     {
       "id": "18ku9IDgHr-EXODXCzoQ63rdQiWM1vhVV",
       "name": "IMG_4165.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:03:04.540Z"
     },
     {
       "id": "1dpeHA-3OvYdqiGEmcHgdLdXJecmT81oB",
       "name": "IMG_4214.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:02:52.426Z"
     },
     {
       "id": "126P8pY8u771_Fpak2SS5sLEqf9AhtTLQ",
       "name": "IMG_3925.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-04-20T16:02:40.948Z"
     }
   ]
 }
