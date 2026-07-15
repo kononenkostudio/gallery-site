@@ -1,7 +1,238 @@
 {
   "slug": "sasha",
   "clientName": "Sasha",
-  "photoCount": 0,
-  "updatedAt": "2026-07-15T13:01:51.526Z",
-  "photos": []
+  "photoCount": 46,
+  "updatedAt": "2026-07-15T13:02:49.381Z",
+  "photos": [
+    {
+      "id": "19CZRcGImChef7cujGjesNydUAKhP8QV3",
+      "name": "IMG_4893.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1jPxT7Z3fq_mi20xsCVZsVA5fklXRgq5Y",
+      "name": "IMG_5072.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1n6dGbGU_VGghR5cjQqDIvSZ_uAp7sXRH",
+      "name": "IMG_5019.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1ioVLVct0L524buil0pJAFEcEbBH13kN2",
+      "name": "IMG_5033.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1UFok0Hv1H4PJnhGOlpYIa1e8WuB2IW6n",
+      "name": "IMG_4802.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1FG03w-zEM3c7NWyyux6jbv1Sh2rmiOZW",
+      "name": "IMG_4804.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1HC-ocY6TvVb9jQPHlH4STYPar1OXqoYW",
+      "name": "IMG_4870.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1bw99qFVtK_koIkt6TY_bmAstwLU8sf6W",
+      "name": "IMG_5061.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1UJmwkqmZmcqSzCAbFUwLU40O_yOQvMh7",
+      "name": "IMG_4872.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1hk2L4V3FFAA3T49nE0Cj3SwPbVvN53dg",
+      "name": "IMG_5090.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "12qcloHpURmhR56qu6Z2POpgvtEPpHHYD",
+      "name": "IMG_4877.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1EiHRY-XlUcprXn7PkoDcZ4X5JRG_tzNq",
+      "name": "IMG_4971.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1GgbsQWucVWtZbxBXkVzd62vCvaDqxM6n",
+      "name": "IMG_4907.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1eWA3qmxV1a996CIYt_iMnkNF9tmkuZVk",
+      "name": "IMG_4954.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1dDIPsClsuOx6BfohACnXFA02M1C1fqzX",
+      "name": "IMG_4854.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1Jwn3ZSU48X_zQWWgVeHr_FiYq7i5TpxT",
+      "name": "IMG_4898.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1R-2P6ai3S91eg9n_ar7BBINEGH2jzWxG",
+      "name": "IMG_5093.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1eFufPr6G8TnLvFoPvYf62YF7N2qzzs06",
+      "name": "IMG_4839.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1GL9Wh4e8EndUPZWsKcuzvh5j204d2cFW",
+      "name": "IMG_4986.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1ymJqmJOux7tY8wmQqMDF4bITs2k7-yl7",
+      "name": "IMG_4840.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1P6Ix6T9AFTfkXD1v4vGyEzS7ciq-xzOh",
+      "name": "IMG_5469.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1ytuVs94Svm_djlw1TuYhxSiCJpG466vc",
+      "name": "IMG_4941.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1J9XoycCp9KgpOn2-dST3lQOulHhmmWyS",
+      "name": "IMG_5228.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1zfbydjAulB3VeOqvjK2m8wQzqQ_ZKoIG",
+      "name": "IMG_5010.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "11xF0FuPR8IfCarNoaaBNQOUx2ZqM2PgO",
+      "name": "IMG_4860.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1PEzn267fvY98j1jUhtkezwEjwaQ-JZXc",
+      "name": "IMG_5411.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1sz_3Z42FzK-HUsmdywWxKMxdcZkEmQMC",
+      "name": "IMG_4908.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1g8bTnt6wxYSsePpNsf6JBJx_l9KMJIsJ",
+      "name": "IMG_5164.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1QvIcANfExGzXztHscYGhdbK0YiB-lmqu",
+      "name": "IMG_5262.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1LRWC6C7Kr2qehja3iqBginS7OCsHkfD_",
+      "name": "IMG_4927.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1T3VJJDy9V16Emku-g9YVABjEQDmvqeNI",
+      "name": "IMG_5184.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1ohlwIPyaAaWTmKSVObw0sk1Si3Kq10Au",
+      "name": "IMG_5559.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1T7gDqWbQOzxcYGxSquCIrf8-kNWe5eMp",
+      "name": "IMG_4861.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1Ms-Bav4kmDLMqffXnIDmK_aCnRs_Gl8E",
+      "name": "IMG_4775.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1VAhl4TM91BiF_Oh2_rBKbV4y0DYZXXBj",
+      "name": "IMG_5265.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1Bk0e72bDSL1vd1FMzh4R38-hnCjXGn-e",
+      "name": "IMG_5315.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "14KvWUsaNSstEevu4t6pefr2JFRp2CiyU",
+      "name": "IMG_5455.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1MfALKifL2_hLBsA4H8dlsXWuTvgOJOxI",
+      "name": "IMG_5319.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1GU7Cx2zHOhltunBpzTthKVEZAhlXwj32",
+      "name": "IMG_5120.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "19tZd1ewz9ZeElAll_Vyg3d9GrmEUT3s0",
+      "name": "IMG_5247.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1JH0ntB__okZiSpWlb68j_hkgpr4yqrLO",
+      "name": "IMG_4925.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1tzOwfF8CwhpsUx6PtVjiufYWi6mMY36K",
+      "name": "IMG_5278.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1GHrh0BpLItVsjT9f_zbO2JQDHdH3eoa9",
+      "name": "IMG_5295.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "12zn9RjCcXKSrvYyZOPLN-6aG215CaLEF",
+      "name": "IMG_4913.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1to03AIth3_CNpdDh3xSRIe9UOJ7KZS3v",
+      "name": "IMG_4915.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1Err3NfznBnZNA5i-J0tNhwUp6N236PLs",
+      "name": "IMG_5067.jpg",
+      "mimeType": "image/jpeg"
+    }
+  ]
 }
