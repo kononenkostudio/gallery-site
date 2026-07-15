@@ -77,7 +77,7 @@ header{
 .portfolio-grid{column-count:4;column-gap:14px;}
 .portfolio-grid .p-item{
   break-inside:avoid;margin-bottom:14px;border-radius:4px;overflow:hidden;
-  cursor:pointer;background:var(--oatmeal-mid);
+  cursor:pointer;background:var(--oatmeal-mid);min-height:120px;
 }
 .portfolio-grid .p-item img{width:100%;display:block;transition:transform .5s ease;}
 .portfolio-grid .p-item:hover img{transform:scale(1.03);}
@@ -261,7 +261,7 @@ async function loadPortfolio(){
     portfolioPhotos.forEach((p, i) => {
       const item = document.createElement('div');
       item.className = 'p-item';
-      item.innerHTML = `<img src="${driveThumbUrl(p.id)}" loading="lazy" alt="${p.name || ('Portfolio ' + (i+1))}">`;
+      item.innerHTML = `<img src="${driveThumbUrl(p.id)}" alt="${p.name || ('Portfolio ' + (i+1))}">`;
       item.addEventListener('click', () => openLightbox(i));
       grid.appendChild(item);
     });
