@@ -1,0 +1,18 @@
+{
+  "slug": "web",
+  "clientName": "web",
+  "photoCount": 2,
+  "updatedAt": "2026-07-15T12:13:07.349Z",
+  "photos": [
+    {
+      "id": "1ySro8eOu_vtNBiiyU2l3hFtYGGx4mvCF",
+      "name": "IMG_5228.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1rzenOt86_aFolx8-1waQD0OUI8Ju_Js7",
+      "name": "IMG_4387.jpg",
+      "mimeType": "image/jpeg"
+    }
+  ]
+}
