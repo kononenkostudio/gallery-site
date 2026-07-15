@@ -1,7 +1,18 @@
 {
   "slug": "valery",
   "clientName": "Valery",
-  "photoCount": 0,
-  "updatedAt": "2026-07-15T12:13:09.014Z",
-  "photos": []
+  "photoCount": 2,
+  "updatedAt": "2026-07-15T12:19:49.454Z",
+  "photos": [
+    {
+      "id": "10n-9MjXNYg25Z3pJVpUQ2T26Sl99r0Fn",
+      "name": "IMG_6459.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1DseaOR1nRXR5iHBkcWO5vxP2qJJo1Hnl",
+      "name": "IMG_6729.jpg",
+      "mimeType": "image/jpeg"
+    }
+  ]
 }
