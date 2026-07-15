@@ -44,7 +44,7 @@ header{
 
 .hero{
   position:relative;overflow:hidden;
-  padding:70px 32px 90px;max-width:1100px;margin:0 auto;
+  padding:70px 32px 60px;max-width:1100px;margin:0 auto;
   display:flex;flex-direction:column;align-items:center;text-align:center;
 }
 .hero-eyebrow{
@@ -72,41 +72,16 @@ header{
 .btn-instagram:hover{background:var(--warm-brown);}
 .btn .ic{font-size:16px;line-height:1;}
 
-/* Portfolio slider */
-.portfolio{padding:10px 0 80px;}
-.portfolio-title{
-  font-family:'Fraunces',serif;font-style:italic;font-size:26px;
-  text-align:center;margin-bottom:28px;color:var(--deep-brown);
+/* Portfolio kolāža */
+.portfolio-wrap{max-width:1400px;margin:0 auto;padding:20px 28px 70px;}
+.portfolio-grid{column-count:4;column-gap:14px;}
+.portfolio-grid .p-item{
+  break-inside:avoid;margin-bottom:14px;border-radius:4px;overflow:hidden;
+  cursor:pointer;background:var(--oatmeal-mid);
 }
-.slider{
-  position:relative;max-width:900px;margin:0 auto;padding:0 32px;
-}
-.slider-stage{
-  position:relative;width:100%;aspect-ratio:4/3;border-radius:8px;overflow:hidden;
-  background:var(--oatmeal-mid);
-}
-.slider-stage img{
-  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
-  opacity:0;transition:opacity .6s ease;
-}
-.slider-stage img.active{opacity:1;}
-.slider-empty{
-  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-  color:var(--mist);font-size:13px;text-align:center;padding:20px;
-}
-.slider-arrow{
-  position:absolute;top:50%;transform:translateY(-50%);
-  width:42px;height:42px;border-radius:50%;
-  background:rgba(255,255,255,.85);color:var(--deep-brown);
-  display:flex;align-items:center;justify-content:center;font-size:20px;
-  box-shadow:0 4px 14px rgba(61,42,26,.18);z-index:3;
-}
-.slider-arrow:hover{background:#fff;}
-.slider-prev{left:44px;}
-.slider-next{right:44px;}
-.slider-dots{display:flex;gap:7px;justify-content:center;margin-top:16px;}
-.slider-dot{width:7px;height:7px;border-radius:50%;background:var(--border-strong);transition:background .2s,transform .2s;}
-.slider-dot.active{background:var(--terra);transform:scale(1.3);}
+.portfolio-grid .p-item img{width:100%;display:block;transition:transform .5s ease;}
+.portfolio-grid .p-item:hover img{transform:scale(1.03);}
+.portfolio-empty{padding:30px;text-align:center;color:var(--mist);font-size:13px;}
 
 .section{max-width:640px;margin:0 auto;padding:20px 32px 100px;}
 .section-title{
@@ -154,16 +129,45 @@ footer{
 footer .fname{font-family:'Fraunces',serif;font-style:italic;font-size:16px;}
 footer .fcontact{font-size:11px;color:var(--mist);letter-spacing:.03em;}
 
+/* Vienkāršs lightbox portfolio bildēm */
+.lightbox{
+  position:fixed;inset:0;background:rgba(61,42,26,.97);
+  z-index:200;display:none;align-items:center;justify-content:center;
+}
+.lightbox.open{display:flex;}
+.lb-stage{width:100%;height:100%;display:flex;align-items:center;justify-content:center;padding:60px;}
+.lb-stage img{max-width:100%;max-height:100%;object-fit:contain;border-radius:2px;}
+.lb-close{
+  position:absolute;top:18px;right:22px;font-size:26px;color:rgba(255,255,255,.7);
+  width:40px;height:40px;display:flex;align-items:center;justify-content:center;
+  border-radius:50%;
+}
+.lb-close:hover{color:#fff;background:rgba(255,255,255,.08);}
+.lb-nav{
+  position:absolute;top:50%;transform:translateY(-50%);
+  width:46px;height:46px;border-radius:50%;
+  background:rgba(255,255,255,.08);color:rgba(255,255,255,.75);
+  display:flex;align-items:center;justify-content:center;font-size:22px;
+}
+.lb-nav:hover{background:var(--terra);color:#fff;}
+.lb-prev{left:18px;}
+.lb-next{right:18px;}
+
 @media(max-width:600px){
   header{padding:20px 20px;}
-  .hero{padding:50px 20px 60px;}
+  .hero{padding:50px 20px 40px;}
   .btn{padding:14px 22px;font-size:12px;}
-  .slider{padding:0 16px;}
-  .slider-prev{left:20px;}
-  .slider-next{right:20px;}
-  .slider-arrow{width:36px;height:36px;font-size:17px;}
+  .portfolio-wrap{padding:10px 12px 50px;}
+  .portfolio-grid{column-count:2;column-gap:8px;}
+  .portfolio-grid .p-item{margin-bottom:8px;}
   .section{padding:10px 20px 70px;}
   .form-card{padding:24px;}
+  .lb-prev{left:6px;}
+  .lb-next{right:6px;}
+  .lb-nav{width:38px;height:38px;font-size:18px;}
+}
+@media(min-width:601px) and (max-width:1024px){
+  .portfolio-grid{column-count:3;}
 }
 </style>
 </head>
@@ -188,16 +192,8 @@ footer .fcontact{font-size:11px;color:var(--mist);letter-spacing:.03em;}
   </div>
 </section>
 
-<section class="portfolio">
-  <div class="portfolio-title">Портфолио</div>
-  <div class="slider">
-    <div class="slider-stage" id="sliderStage">
-      <div class="slider-empty" id="sliderEmpty">Портфолио скоро будет здесь.</div>
-    </div>
-    <button class="slider-arrow slider-prev" id="sliderPrev">‹</button>
-    <button class="slider-arrow slider-next" id="sliderNext">›</button>
-  </div>
-  <div class="slider-dots" id="sliderDots"></div>
+<section class="portfolio-wrap">
+  <div class="portfolio-grid" id="portfolioGrid"></div>
 </section>
 
 <section class="section">
@@ -229,75 +225,75 @@ footer .fcontact{font-size:11px;color:var(--mist);letter-spacing:.03em;}
   <div class="fcontact">Málaga · Marbella · +380 99 337 7335 · @alyona.photographer.malaga</div>
 </footer>
 
+<div class="lightbox" id="lightbox">
+  <button class="lb-close" id="lbClose">×</button>
+  <button class="lb-nav lb-prev" id="lbPrev">‹</button>
+  <button class="lb-nav lb-next" id="lbNext">›</button>
+  <div class="lb-stage"><img id="lbImage" src="" alt=""></div>
+</div>
+
 <script>
 // Publiski redzamā, referrer-ierobežotā Google Drive API atslēga (droši embed-ot front-end kodā).
 const DRIVE_API_KEY = 'AIzaSyANjgOtmzdGe9MC38FJSNnzHqKF31FI_xc';
-function driveImageUrl(fileId){
-  return `https://www.googleapis.com/drive/v3/files/${fileId}?alt=media&key=${DRIVE_API_KEY}`;
-}
+function driveThumbUrl(fileId){ return `https://drive.google.com/thumbnail?id=${fileId}&sz=w1000`; }
+function driveFullUrl(fileId){ return `https://www.googleapis.com/drive/v3/files/${fileId}?alt=media&key=${DRIVE_API_KEY}`; }
 
-let slides = [];
-let activeSlide = 0;
-let sliderTimer = null;
+let portfolioPhotos = [];
+let lbIndex = 0;
+const lightbox = document.getElementById('lightbox');
+const lbImage = document.getElementById('lbImage');
 
 async function loadPortfolio(){
+  const grid = document.getElementById('portfolioGrid');
   try{
     const res = await fetch('/data/web.json', {cache:'no-store'});
     if(!res.ok) throw new Error('web.json not found: ' + res.status);
     const manifest = await res.json();
-    slides = (manifest.photos || []).map(p => driveImageUrl(p.id));
-    renderSlider();
+
+    portfolioPhotos = (manifest.photos || []).filter(p => (p.type || 'image') === 'image');
+
+    if(!portfolioPhotos.length){
+      grid.innerHTML = '<div class="portfolio-empty">Портфолио скоро будет здесь.</div>';
+      return;
+    }
+
+    grid.innerHTML = '';
+    portfolioPhotos.forEach((p, i) => {
+      const item = document.createElement('div');
+      item.className = 'p-item';
+      item.innerHTML = `<img src="${driveThumbUrl(p.id)}" loading="lazy" alt="${p.name || ('Portfolio ' + (i+1))}">`;
+      item.addEventListener('click', () => openLightbox(i));
+      grid.appendChild(item);
+    });
   } catch(err){
     console.error(err);
   }
 }
 
-function renderSlider(){
-  const stage = document.getElementById('sliderStage');
-  const dotsWrap = document.getElementById('sliderDots');
-  if(!slides.length) return; // atstāj "Портфолио скоро будет здесь" tekstu
-
-  stage.innerHTML = '';
-  slides.forEach((src, i) => {
-    const img = document.createElement('img');
-    img.src = src;
-    img.alt = 'Portfolio ' + (i+1);
-    if(i === 0) img.classList.add('active');
-    stage.appendChild(img);
-  });
-
-  dotsWrap.innerHTML = '';
-  slides.forEach((_, i) => {
-    const dot = document.createElement('div');
-    dot.className = 'slider-dot' + (i === 0 ? ' active' : '');
-    dot.addEventListener('click', () => goToSlide(i));
-    dotsWrap.appendChild(dot);
-  });
-
-  document.getElementById('sliderPrev').addEventListener('click', () => goToSlide((activeSlide-1+slides.length)%slides.length));
-  document.getElementById('sliderNext').addEventListener('click', () => goToSlide((activeSlide+1)%slides.length));
-
-  startAutoplay();
+function openLightbox(i){
+  lbIndex = i;
+  renderLightbox();
+  lightbox.classList.add('open');
 }
-
-function goToSlide(idx){
-  const imgs = document.querySelectorAll('#sliderStage img');
-  const dots = document.querySelectorAll('.slider-dot');
-  imgs[activeSlide]?.classList.remove('active');
-  dots[activeSlide]?.classList.remove('active');
-  activeSlide = idx;
-  imgs[activeSlide]?.classList.add('active');
-  dots[activeSlide]?.classList.add('active');
-  startAutoplay();
+function renderLightbox(){
+  const p = portfolioPhotos[lbIndex];
+  lbImage.src = driveFullUrl(p.id);
+  lbImage.alt = p.name || '';
 }
+function closeLightbox(){ lightbox.classList.remove('open'); lbImage.src=''; }
+function nextLb(){ lbIndex = (lbIndex+1) % portfolioPhotos.length; renderLightbox(); }
+function prevLb(){ lbIndex = (lbIndex-1+portfolioPhotos.length) % portfolioPhotos.length; renderLightbox(); }
 
-function startAutoplay(){
-  clearInterval(sliderTimer);
-  if(slides.length < 2) return;
-  sliderTimer = setInterval(() => {
-    goToSlide((activeSlide+1) % slides.length);
-  }, 4500);
-}
+document.getElementById('lbClose').addEventListener('click', closeLightbox);
+document.getElementById('lbNext').addEventListener('click', nextLb);
+document.getElementById('lbPrev').addEventListener('click', prevLb);
+lightbox.addEventListener('click', (e)=>{ if(e.target === lightbox) closeLightbox(); });
+document.addEventListener('keydown', (e)=>{
+  if(!lightbox.classList.contains('open')) return;
+  if(e.key === 'Escape') closeLightbox();
+  if(e.key === 'ArrowRight') nextLb();
+  if(e.key === 'ArrowLeft') prevLb();
+});
 
 loadPortfolio();
 
