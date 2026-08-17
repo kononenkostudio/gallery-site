@@ -916,14 +916,14 @@ if (IG_POSTS && IG_POSTS.length){
     <a class="ig-tile" href="${p.permalink}" target="_blank" rel="noopener"
        aria-label="${p.isVideo ? 'Видео' : 'Фото'} в Instagram${p.caption ? ': ' + p.caption.replace(/"/g,'&quot;').slice(0,60) : ''}">
       <div class="frame">
-        <img class="cover" src="${p.thumb}" alt="Instagram — ${p.isVideo ? 'видео' : 'фото'} ${i+1}" ${i<4?'':'loading="lazy"'} decoding="async" referrerpolicy="no-referrer">
+        <img class="cover" src="${p.thumb}" alt="Instagram — ${p.isVideo ? 'видео' : 'фото'} ${i+1}" decoding="async" referrerpolicy="no-referrer">
         ${p.isVideo ? '<span class="ig-play">&#9654;</span>' : ''}
       </div>
     </a>`).join('');
 } else {
   const igList = (IG_TILES && IG_TILES.length) ? IG_TILES : Array(10).fill('');
   $('#igTrack').innerHTML = igList.map((src,i)=>
-    `<a class="ig-tile" href="${IG_PROFILE}" target="_blank" rel="noopener" aria-label="Instagram фото ${i+1}"><div class="frame">${media(src,'Instagram фото '+(i+1),'ig '+(i+1))}</div></a>`).join('');
+    `<a class="ig-tile" href="${IG_PROFILE}" target="_blank" rel="noopener" aria-label="Instagram фото ${i+1}"><div class="frame">${media(src,'Instagram фото '+(i+1),'ig '+(i+1),false)}</div></a>`).join('');
 }
 $('#gcalBtn').href = GCAL_URL;
 /* hero featured slideshow */
