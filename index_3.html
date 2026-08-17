@@ -861,7 +861,9 @@ function media(src, alt, label, lazy){
   }
 
   if (hasGSAP && !reduceMotion && typeof ScrollTrigger !== 'undefined'){
-    gsap.set(canvas, { xPercent:-50, transformOrigin:'50% 50%' });
+    /* x:0 обязателен — иначе GSAP прибавляет свой сдвиг к translateX(-50%) из CSS
+       и коллаж уезжает влево на всю свою ширину. */
+    gsap.set(canvas, { x:0, xPercent:-50, transformOrigin:'50% 50%' });
 
     const tl = gsap.timeline({ scrollTrigger:{
       trigger: stage, start:'top top',
