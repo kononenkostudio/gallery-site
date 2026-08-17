@@ -442,7 +442,10 @@ main{position:relative; z-index:1; background:var(--bg); transition:background .
 
 
 /* Instagram josla: video atzīme */
-.ig-tile .frame{position:relative}
+/* без явной высоты .frame схлопывался в 0 px, картинка (height:100%) тоже
+   становилась нулевой, и lazy-loading никогда её не подгружал */
+.ig-tile .frame{position:relative; height:100%}
+.ig-tile .frame img.cover{width:100%; height:100%; object-fit:cover; display:block}
 .ig-play{position:absolute; right:8px; top:8px; z-index:2; width:26px; height:26px;
   border-radius:50%; background:rgba(0,0,0,.52); color:#fff; display:flex;
   align-items:center; justify-content:center; font-size:10px; line-height:1;
