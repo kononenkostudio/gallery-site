@@ -288,7 +288,10 @@ body.cursor-on #cursorDot,body.cursor-on #cursorRing{opacity:1}
 /* ============ INSTAGRAM ============ */
 #igWrap{position:relative; overflow:hidden}
 #igTrack{display:flex; gap:18px; will-change:transform; padding:10px 0}
-.ig-tile{flex:0 0 clamp(200px,24vw,320px); aspect-ratio:1; position:relative; display:block}
+/* align-self:start обязателен: иначе flex-контейнер растягивает плитку
+   по высоте и quadratic aspect-ratio не применяется */
+.ig-tile{flex:0 0 clamp(200px,24vw,320px); aspect-ratio:1; align-self:start;
+  position:relative; display:block}
 .ig-tile .ph{height:100%; filter:saturate(.35); transition:filter .5s, transform .5s var(--ease-out)}
 .ig-tile:hover .ph{filter:saturate(1); transform:translateY(-6px)}
 @media (max-width:820px){
