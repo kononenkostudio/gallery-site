@@ -387,11 +387,10 @@ main{position:relative; z-index:1; background:var(--bg); transition:background .
 .col-item{
   break-inside:avoid; -webkit-column-break-inside:avoid; page-break-inside:avoid;
   position:relative; overflow:hidden; border-radius:3px; cursor:pointer;
-  background:var(--photo-a); margin:0 0 16px; min-height:90px;
+  background:var(--photo-a); margin:0 0 18px; min-height:90px;
 }
-/* лёгкая нерегулярность вертикального ритма */
 .col-item:nth-child(3n){margin-bottom:30px}
-.col-item:nth-child(5n){margin-bottom:22px}
+.col-item:nth-child(5n){margin-bottom:24px}
 .col-item img{width:100%; height:auto; display:block; will-change:transform,filter}
 .col-item .ph{width:100%; aspect-ratio:3/4}
 .col-item::after{content:""; position:absolute; inset:0; box-shadow:inset 0 0 0 1px rgba(0,0,0,.07); pointer-events:none}
@@ -809,16 +808,15 @@ function media(src, alt, label, lazy){
     ? `<img class="cover" src="${src}" alt="${(alt||'').replace(/"/g,'&quot;')}" ${lazy===false?'':'loading="lazy" decoding="async"'}>`
     : `<div class="ph" data-label="${label||''}"></div>`;
 }
-/* ================= ПОРТФОЛИО: сборка коллажа =================
-   Плитки НЕ обрезаются под сетку — каждый кадр показан в своих пропорциях.
-   Вертикальные снимки остаются вертикальными, горизонтальные — горизонтальными. */
+/* ================= ПОРТФОЛИО: сборка коллажа ================= */
+/* Плитки НЕ подгоняются под сетку: каждый кадр показан в своих пропорциях. */
 (function(){
   const canvas = document.getElementById('colCanvas');
   if (!canvas) return;
   const src = (typeof COLLAGE !== 'undefined' && COLLAGE.length)
     ? COLLAGE
     : Array.from({length:12}, (_,i)=>({thumb:'', full:'', name:'кадр '+(i+1)}));
-  /* Пока снимков мало, повторяем их по кругу, чтобы коллаж был плотным.
+  /* Пока снимков мало, повторяем их по кругу — коллаж остаётся плотным, без дыр.
      Добавите фото в папку Drive «web» — плиток станет больше, повторов меньше. */
   const MIN_TILES = 12;
   const total = Math.max(src.length, MIN_TILES);
@@ -837,17 +835,16 @@ function media(src, alt, label, lazy){
 })();
 
 /* ================= ПОРТФОЛИО: скролл-лупа =================
-   Логика простая и предсказуемая: пока секция закреплена, коллаж едет
-   РОВНО СНИЗУ ВВЕРХ — ровно на свою высоту, без рывков и метаний в стороны.
-   Поверх этого лёгкое «дыхание» масштаба, а кадр, проходящий через центр,
-   чуть приближается и светлеет — это и есть эффект лупы.
+   Движение одно и предсказуемое: пока секция закреплена, коллаж едет
+   строго снизу вверх — ровно на свою высоту, без метаний в стороны.
+   Поверх — мягкое «дыхание» масштаба, а кадр в центре чуть приближается
+   и светлеет. Это и есть эффект лупы.
    ========================================================== */
 (function(){
   const stage = document.getElementById('colStage'), canvas = document.getElementById('colCanvas');
   if (!stage || !canvas) return;
   const items = [...canvas.querySelectorAll('.col-item')];
 
-  /* сколько коллажу нужно проехать, чтобы показать себя целиком */
   const travel = () => Math.max(0, canvas.offsetHeight - stage.offsetHeight);
 
   function lens(){
@@ -857,7 +854,7 @@ function media(src, alt, label, lazy){
     for (const it of items){
       const b = it.getBoundingClientRect();
       const d = Math.abs((b.top + b.height/2) - cy);
-      const t = Math.max(0, 1 - d/reach);          /* 1 в центре → 0 у краёв */
+      const t = Math.max(0, 1 - d/reach);
       const el = it.firstElementChild;
       if (!el) continue;
       el.style.transform = 'scale(' + (1 + 0.09*t).toFixed(3) + ')';
@@ -866,20 +863,17 @@ function media(src, alt, label, lazy){
   }
 
   if (hasGSAP && !reduceMotion && typeof ScrollTrigger !== 'undefined'){
-    /* x:0 обязателен — иначе GSAP прибавляет свой сдвиг к translateX(-50%) из CSS
-       и коллаж уезжает влево на всю свою ширину. */
+    /* x:0 обязателен — иначе GSAP прибавит свой сдвиг к translateX(-50%) из CSS
+       и коллаж уедет влево на всю свою ширину. */
     gsap.set(canvas, { x:0, xPercent:-50, transformOrigin:'50% 50%' });
 
     const tl = gsap.timeline({ scrollTrigger:{
       trigger: stage, start:'top top',
-      /* длина прокрутки = ровно высота коллажа, поэтому скорость ощущается естественной */
       end: () => '+=' + Math.max(travel(), window.innerHeight * 0.8),
       pin: true, scrub: 0.7, invalidateOnRefresh: true,
       onUpdate: lens, onRefresh: lens
     }});
-    /* единственное движение — вертикальное, монотонное */
     tl.fromTo(canvas, {y:0}, {y: () => -travel(), ease:'none', duration:1}, 0)
-    /* мягкое приближение к середине и обратно */
       .to(canvas, {keyframes:{scale:[1, 1.07, 1]}, ease:'sine.inOut', duration:1}, 0);
 
     /* высота коллажа известна только после загрузки картинок — пересчитываем */
@@ -887,8 +881,7 @@ function media(src, alt, label, lazy){
     const settle = () => { if (--pending <= 0) { ScrollTrigger.refresh(); lens(); } };
     items.forEach(it=>{
       const img = it.querySelector('img');
-      if (!img) return settle();
-      if (img.complete) return settle();
+      if (!img || img.complete) return settle();
       img.addEventListener('load', settle, {once:true});
       img.addEventListener('error', settle, {once:true});
     });
@@ -900,6 +893,171 @@ function media(src, alt, label, lazy){
     stage.style.overflow = 'visible';
   }
 })();
+
+/* ================= PRELOADER ================= */
+(function(){
+  const word = 'Alyona Kononenko';
+  const wm = $('#plWord');
+  wm.innerHTML = word.split('').map(ch=>`<span>${ch===' '?'&nbsp;':ch}</span>`).join('');
+  const spans = wm.querySelectorAll('span');
+  const cnt = $('#plCount');
+  let done = false;
+  function finish(){
+    if (done) return; done = true;
+    document.body.classList.remove('locked');
+    /* страховка: если вкладка была в фоне, GSAP-анимация может не отработать,
+       поэтому прелоадер снимаем и напрямую, не дожидаясь onComplete */
+    setTimeout(()=>{ const pl = $('#preloader'); if (pl) pl.style.display='none'; }, 1200);
+    if (hasGSAP && !reduceMotion){
+      gsap.to('#preloader',{clipPath:'inset(0 0 100% 0)',duration:1,ease:'expo.inOut',
+        onComplete:()=>{ $('#preloader').style.display='none'; heroIn(); ScrollTrigger.refresh(); }});
+      $('#preloader').style.clipPath = 'inset(0 0 0% 0)';
+    } else { $('#preloader').style.display='none'; heroIn(); }
+  }
+  if (hasGSAP && !reduceMotion){
+    gsap.to(spans,{opacity:1,y:0,duration:.8,stagger:.045,ease:'power3.out'});
+    const o = {v:0};
+    gsap.to(o,{v:100,duration:1.9,ease:'power2.inOut',onUpdate:()=>cnt.textContent=Math.round(o.v),onComplete:finish});
+  } else {
+    spans.forEach(s=>{s.style.opacity=1;s.style.transform='none'});
+    cnt.textContent = 100; setTimeout(finish, 400);
+  }
+  setTimeout(finish, 4500); /* safety */
+})();
+
+/* ================= HERO ENTRANCE ================= */
+let heroLines = [];
+function heroIn(){
+  const nameLines = splitLines($('.hero-name'));
+  const tagLines = splitLines($('.hero-tagline'));
+  heroLines = [...nameLines, ...tagLines];
+  if (hasGSAP && !reduceMotion){
+    gsap.fromTo('#heroLayer',{scale:1.15},{scale:1,duration:1.6,ease:'power3.out'});
+    gsap.to(nameLines,{y:0,duration:1.1,stagger:.09,ease:'power3.out',delay:.1});
+    gsap.to(tagLines,{y:0,duration:1,stagger:.08,ease:'power3.out',delay:.35});
+    gsap.to('#hero [data-rv]',{opacity:1,y:0,duration:.9,stagger:.12,ease:'power3.out',delay:.5});
+  } else {
+    heroLines.forEach(l=>l.style.transform='none');
+    $$('#hero [data-rv]').forEach(e=>{e.style.opacity=1;e.style.transform='none'});
+  }
+}
+
+/* ================= SCROLL CHOREOGRAPHY ================= */
+if (hasGSAP && !reduceMotion){
+  /* hero parallax out */
+  gsap.to('#heroLayer',{yPercent:12,ease:'none',scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:true}});
+  gsap.to('.hero-inner',{yPercent:-18,opacity:.15,ease:'none',scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:true}});
+  /* generic reveals */
+  ScrollTrigger.batch('main [data-rv]:not(#hero [data-rv])',{
+    start:'top 80%',
+    onEnter:els=>gsap.to(els,{opacity:1,y:0,duration:.9,stagger:.1,ease:'power3.out',overwrite:true})
+  });
+  /* project media: mask settle + internal parallax */
+  $$('.p-media .ph').forEach(ph=>{
+    gsap.fromTo(ph,{scale:1.12},{scale:1.04,ease:'none',scrollTrigger:{trigger:ph.closest('.project'),start:'top 85%',end:'bottom 20%',scrub:true}});
+  });
+  /* floating photos parallax */
+  $$('[data-para]').forEach(el=>{
+    gsap.to(el,{yPercent:parseFloat(el.dataset.para),ease:'none',scrollTrigger:{trigger:el.closest('section'),start:'top bottom',end:'bottom top',scrub:true}});
+  });
+  /* intro sentence word-by-word */
+  const ws = (()=>{const el=$('#bigSentence');const t=el.textContent.trim();el.innerHTML=t.split(/\s+/).map(w=>`<span class="w">${w}</span>`).join(' ');return el.querySelectorAll('.w')})();
+  gsap.to(ws,{opacity:1,ease:'none',stagger:.4,scrollTrigger:{trigger:'#intro',start:'top 70%',end:'bottom 60%',scrub:true}});
+  /* counters */
+  $$('[data-count]').forEach(n=>{
+    ScrollTrigger.create({trigger:n,start:'top 85%',once:true,onEnter:()=>{
+      const o={v:0}; gsap.to(o,{v:+n.dataset.count,duration:1.6,ease:'power2.out',onUpdate:()=>n.textContent=Math.round(o.v)});
+    }});
+  });
+  /* signature draw */
+  const sig = $('#sigPath');
+  const len = sig.getTotalLength();
+  sig.style.strokeDasharray = len; sig.style.strokeDashoffset = len;
+  ScrollTrigger.create({trigger:'#signature',start:'top 88%',once:true,
+    onEnter:()=>gsap.to(sig,{strokeDashoffset:0,duration:1.8,ease:'power2.inOut'})});
+  /* full-bleed band: photo parallax + copy lines drifting apart */
+  gsap.to('#band .band-media',{yPercent:10,ease:'none',scrollTrigger:{trigger:'#band',start:'top bottom',end:'bottom top',scrub:true}});
+  gsap.fromTo('#bandL1',{xPercent:-6},{xPercent:6,ease:'none',scrollTrigger:{trigger:'#band',start:'top bottom',end:'bottom top',scrub:true}});
+  gsap.fromTo('#bandL2',{xPercent:6},{xPercent:-6,ease:'none',scrollTrigger:{trigger:'#band',start:'top bottom',end:'bottom top',scrub:true}});
+  /* instagram pinned horizontal scrub (desktop) */
+  if (!isTouch && window.innerWidth > 820){
+    const track = $('#igTrack');
+    const dist = () => track.scrollWidth - $('#igWrap').clientWidth;
+    gsap.to(track,{x:()=>-dist(),ease:'none',
+      scrollTrigger:{trigger:'#instagram',start:'top 15%',end:()=>'+='+dist(),pin:true,scrub:true,invalidateOnRefresh:true}});
+  }
+  /* header + progress + fab */
+  let lastY = 0;
+  ScrollTrigger.create({
+    onUpdate:self=>{
+      const y = window.scrollY;
+      $('#siteHeader').classList.toggle('scrolled', y > window.innerHeight*.85);
+      $('#siteHeader').classList.toggle('hidden', y > lastY && y > 300 && !$('#mobileMenu').classList.contains('open'));
+      lastY = y;
+      const p = self.progress || (y / (document.body.scrollHeight - innerHeight));
+      $('#progress').style.width = (Math.min(1,Math.max(0,p))*100)+'%';
+    },
+    trigger:document.body, start:'top top', end:'bottom bottom'
+  });
+  ScrollTrigger.create({trigger:'#intro',start:'top 60%',
+    onEnter:()=>{gsap.to('#waFab',{opacity:1,scale:1,duration:.5,ease:'back.out(2)'});$('#waFab').classList.add('on')},
+    onLeaveBack:()=>{gsap.to('#waFab',{opacity:0,scale:.6,duration:.3});$('#waFab').classList.remove('on')}});
+  /* active nav */
+  ['projects','bio','instagram','contact'].forEach(id=>{
+    ScrollTrigger.create({trigger:'#'+id,start:'top 40%',end:'bottom 40%',
+      onToggle:s=>{ $$('.nav-desktop a[data-sec]').forEach(a=>a.classList.toggle('active', s.isActive && a.dataset.sec===id)); }});
+  });
+} else {
+  /* no-GSAP / reduced-motion fallback */
+  $$('main [data-rv], .rv').forEach(e=>{e.style.opacity=1;e.style.transform='none'});
+  document.body.classList.remove('locked');
+  const io = 'IntersectionObserver' in window;
+  $('#waFab').style.opacity=1; $('#waFab').style.transform='none';
+  window.addEventListener('scroll',()=>{
+    const y=window.scrollY;
+    $('#siteHeader').classList.toggle('scrolled', y>400);
+    $('#progress').style.width=(y/(document.body.scrollHeight-innerHeight)*100)+'%';
+  });
+}
+
+/* ================= THEME TOGGLE ================= */
+(function(){
+  const html = document.documentElement;
+  /* first load: respect prefers-color-scheme */
+  if (window.matchMedia('(prefers-color-scheme: light)').matches) html.dataset.theme = 'day';
+  syncToggle();
+  function syncToggle(){
+    const night = html.dataset.theme === 'night';
+    $('#themeToggle').setAttribute('aria-pressed', String(night));
+    $('#knob').textContent = night ? '☾' : '☀';
+  }
+  function switchTheme(cx, cy){
+    const target = html.dataset.theme === 'night' ? 'day' : 'night';
+    const sweep = $('#themeSweep');
+    const bg = target === 'day' ? '#F5F4F1' : '#362B26';
+    if (hasGSAP && !reduceMotion){
+      sweep.style.background = bg;
+      sweep.style.clipPath = `circle(0px at ${cx}px ${cy}px)`;
+      const r = Math.hypot(Math.max(cx,innerWidth-cx), Math.max(cy,innerHeight-cy));
+      gsap.timeline()
+        .to(sweep,{clipPath:`circle(${r}px at ${cx}px ${cy}px)`,duration:.7,ease:'power2.in',
+          onComplete:()=>{ html.dataset.theme = target; syncToggle(); }})
+        .to(sweep,{opacity:0,duration:.5,ease:'power2.out'})
+        .set(sweep,{clipPath:'circle(0 at 50% 0)',opacity:1});
+    } else { html.dataset.theme = target; syncToggle(); }
+  }
+  $('#themeToggle').addEventListener('click', e=>{
+    const b = e.currentTarget.getBoundingClientRect();
+    switchTheme(b.left+b.width/2, b.top+b.height/2);
+  });
+  $('#mmToggle').addEventListener('click', ()=>switchTheme(innerWidth/2, 80));
+})();
+
+/* ================= MOBILE MENU ================= */
+$('#menuBtn').addEventListener('click',()=>{$('#mobileMenu').classList.add('open');$('#mobileMenu').setAttribute('aria-hidden','false')});
+$('#menuClose').addEventListener('click',closeMenu);
+$$('#mobileMenu a').forEach(a=>a.addEventListener('click',closeMenu));
+function closeMenu(){$('#mobileMenu').classList.remove('open');$('#mobileMenu').setAttribute('aria-hidden','true')}
 
 /* ================= ПОЛНОЭКРАННЫЙ ПРОСМОТР КОЛЛАЖА ================= */
 (function(){
