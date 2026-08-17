@@ -126,7 +126,10 @@ h1{font-weight:400;letter-spacing:.015em}
 }
 #siteHeader.scrolled{background:color-mix(in srgb, var(--bg) 75%, transparent); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); border-bottom:1px solid var(--line)}
 #siteHeader.hidden{transform:translateY(-110%)}
-.brand{font-family:var(--font-logo); font-size:19px; letter-spacing:.16em; text-transform:uppercase; white-space:nowrap}
+.brand{font-family:var(--font-display); font-size:19px; letter-spacing:.16em; text-transform:uppercase; white-space:nowrap}
+/* «.studio» — ровно вдвое меньше и тем же шрифтом, что пункты меню */
+.brand-tld{font-family:var(--font-text); font-size:.5em; letter-spacing:.14em;
+  font-weight:400; margin-left:.1em}
 .nav-desktop{display:flex; align-items:center; gap:30px; font-size:13px; letter-spacing:.14em; text-transform:uppercase}
 .nav-desktop a{position:relative; padding:4px 0}
 .nav-desktop a::after{content:""; position:absolute; left:0; bottom:0; height:1px; width:100%; background:var(--accent); transform:scaleX(0); transform-origin:right; transition:transform .35s var(--ease-out)}
@@ -468,7 +471,7 @@ main{position:relative; z-index:1; background:var(--bg); transition:background .
 <div id="cursorRing" aria-hidden="true"><span id="cursorLabel"></span></div>
 
 <header id="siteHeader">
-  <a href="#hero" class="brand lat">Alyona Kononenko</a>
+  <a href="#hero" class="brand lat" aria-label="Kononenko.studio — на главную">Kononenko<span class="brand-tld">.studio</span></a>
   <nav class="nav-desktop" aria-label="Основная навигация">
     <a href="#projects" data-sec="projects">Портфолио</a>
     <a href="#bio" data-sec="bio">Обо мне</a>
