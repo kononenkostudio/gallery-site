@@ -782,17 +782,22 @@ const COL_SPANS = [[3,3],[2,2],[2,3],[3,2],[2,2],[2,4],[3,3],[2,2],[3,2],[2,3],[
 (function(){
   const canvas = document.getElementById('colCanvas');
   if (!canvas) return;
-  const list = (typeof COLLAGE !== 'undefined' && COLLAGE.length)
+  const src = (typeof COLLAGE !== 'undefined' && COLLAGE.length)
     ? COLLAGE
     : Array.from({length:12}, (_,i)=>({thumb:'', full:'', name:'кадр '+(i+1)}));
+  /* Пока снимков мало, повторяем их по кругу — коллаж остаётся плотным, без дыр.
+     Добавите фото в папку Drive «web» — плиток станет больше, повторов меньше. */
+  const MIN_TILES = 18;
+  const tiles = Array.from({length: Math.max(src.length, MIN_TILES)},
+                           (_,i)=>({ p: src[i % src.length], idx: i % src.length }));
   const narrow = window.matchMedia('(max-width:900px)').matches;
-  canvas.innerHTML = list.map((p,i)=>{
+  canvas.innerHTML = tiles.map((t,i)=>{
     let [c,r] = COL_SPANS[i % COL_SPANS.length];
     if (narrow){ c = Math.min(c,2); r = Math.min(r,3); }
-    const inner = p.thumb
-      ? `<img src="${p.thumb}" alt="Фотосессия — кадр ${i+1}" ${i<6?'':'loading="lazy"'} decoding="async">`
-      : `<div class="ph" data-label="кадр ${i+1}"></div>`;
-    return `<div class="col-item" data-i="${i}" style="grid-column:span ${c}; grid-row:span ${r}">${inner}</div>`;
+    const inner = t.p.thumb
+      ? `<img src="${t.p.thumb}" alt="Фотосессия — кадр ${t.idx+1}" ${i<6?'':'loading="lazy"'} decoding="async">`
+      : `<div class="ph" data-label="кадр ${t.idx+1}"></div>`;
+    return `<div class="col-item" data-i="${t.idx}" style="grid-column:span ${c}; grid-row:span ${r}">${inner}</div>`;
   }).join('');
 })();
 
