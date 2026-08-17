@@ -419,6 +419,14 @@ main{position:relative; z-index:1; background:var(--bg); transition:background .
 }
 @media (prefers-reduced-motion:reduce){ .col-lens{display:none} }
 
+
+/* Instagram josla: video atzīme */
+.ig-tile .frame{position:relative}
+.ig-play{position:absolute; right:8px; top:8px; z-index:2; width:26px; height:26px;
+  border-radius:50%; background:rgba(0,0,0,.52); color:#fff; display:flex;
+  align-items:center; justify-content:center; font-size:10px; line-height:1;
+  backdrop-filter:blur(2px); -webkit-backdrop-filter:blur(2px); pointer-events:none}
+
 </style>
 </head>
 <body class="locked">
@@ -639,6 +647,9 @@ main{position:relative; z-index:1; background:var(--bg); transition:background .
 /* Манифест, который публикует Apps Script из Google Drive (папка «web») */
 const DRIVE_MANIFEST = '/data/web.json';
 
+/* Instagram lenta, ko Apps Script velk no Instagram API un publicē tāpat kā Drive datus */
+const INSTAGRAM_MANIFEST = '/data/instagram.json';
+
 /* Публичная ссылка на файл Drive нужного размера (без API-ключа, быстро) */
 const driveImg = (id, w) => 'https://drive.google.com/thumbnail?id=' + id + '&sz=w' + w;
 
@@ -690,6 +701,9 @@ let IG_TILES = [];
 /* Коллаж «Недавние съёмки» — все фото из папки Drive «web», новые сверху */
 let COLLAGE = [];
 
+/* Посты из Instagram. Пусто → лента показывает фото из Drive, как раньше. */
+let IG_POSTS = [];
+
 /* Ссылка на запись в Google Calendar (appointment schedule) */
 const GCAL_URL = '#';
 
@@ -728,9 +742,17 @@ function applyDrivePhotos(photos){
   });
 }
 
-fetch(DRIVE_MANIFEST, { cache:'no-store' })
-  .then(r => r.ok ? r.json() : null)
-  .then(d => { if (d && d.photos) applyDrivePhotos(d.photos); })
+function fetchJson(url){
+  return fetch(url, { cache:'no-store' })
+    .then(r => r.ok ? r.json() : null)
+    .catch(() => null);
+}
+
+Promise.all([ fetchJson(DRIVE_MANIFEST), fetchJson(INSTAGRAM_MANIFEST) ])
+  .then(([drive, insta]) => {
+    if (drive && drive.photos) applyDrivePhotos(drive.photos);
+    if (insta && insta.posts && insta.posts.length) IG_POSTS = insta.posts;
+  })
   .catch(() => {})
   .then(() => initSite());
 
@@ -847,10 +869,25 @@ const COL_SPANS = [[3,3],[2,2],[2,3],[3,2],[2,2],[2,4],[3,3],[2,2],[3,2],[2,3],[
 /* marquee */
 const cats = ['Индивидуальная','Семейная','Love Story','Бренд'];
 $('#mqTrack').innerHTML = [...cats,...cats,...cats,...cats].map(c=>`<span>${c}</span>`).join('') ;
-/* ig tiles */
-const igList = (IG_TILES && IG_TILES.length) ? IG_TILES : Array(10).fill('');
-$('#igTrack').innerHTML = igList.map((src,i)=>
-  `<a class="ig-tile" href="https://www.instagram.com/alyona.photographer.malaga/" target="_blank" rel="noopener" aria-label="Instagram фото ${i+1}"><div class="frame">${media(src,'Instagram фото '+(i+1),'ig '+(i+1))}</div></a>`).join('');
+/* ================= INSTAGRAM ЛЕНТА =================
+   Если Apps Script уже опубликовал data/instagram.json — показываем настоящие
+   посты (фото и видео) со ссылкой на сам пост. Если нет — как раньше, фото из
+   Drive со ссылкой на профиль. Так лента никогда не бывает пустой. */
+const IG_PROFILE = 'https://www.instagram.com/alyona.photographer.malaga/';
+if (IG_POSTS && IG_POSTS.length){
+  $('#igTrack').innerHTML = IG_POSTS.map((p,i)=>`
+    <a class="ig-tile" href="${p.permalink}" target="_blank" rel="noopener"
+       aria-label="${p.isVideo ? 'Видео' : 'Фото'} в Instagram${p.caption ? ': ' + p.caption.replace(/"/g,'&quot;').slice(0,60) : ''}">
+      <div class="frame">
+        <img class="cover" src="${p.thumb}" alt="Instagram — ${p.isVideo ? 'видео' : 'фото'} ${i+1}" ${i<4?'':'loading="lazy"'} decoding="async" referrerpolicy="no-referrer">
+        ${p.isVideo ? '<span class="ig-play">&#9654;</span>' : ''}
+      </div>
+    </a>`).join('');
+} else {
+  const igList = (IG_TILES && IG_TILES.length) ? IG_TILES : Array(10).fill('');
+  $('#igTrack').innerHTML = igList.map((src,i)=>
+    `<a class="ig-tile" href="${IG_PROFILE}" target="_blank" rel="noopener" aria-label="Instagram фото ${i+1}"><div class="frame">${media(src,'Instagram фото '+(i+1),'ig '+(i+1))}</div></a>`).join('');
+}
 $('#gcalBtn').href = GCAL_URL;
 /* hero featured slideshow */
 (function(){
