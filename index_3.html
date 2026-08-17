@@ -859,9 +859,11 @@ function media(src, alt, label, lazy){
   function setOrigin(el, i){
     const cols = colCount(), rows = Math.ceil(cells.length / cols);
     const col = i % cols, row = Math.floor(i / cols);
-    el.style.transformOrigin =
-      (col === 0 ? '0%' : col === cols - 1 ? '100%' : '50%') + ' ' +
-      (row === 0 ? '0%' : row === rows - 1 ? '100%' : '50%');
+    /* край прижимаем внутрь, но только если рядов/колонок больше одного,
+       иначе кадр должен расти от собственного центра */
+    const ox = cols < 2 ? '50%' : col === 0 ? '0%' : col === cols - 1 ? '100%' : '50%';
+    const oy = rows < 2 ? '50%' : row === 0 ? '0%' : row === rows - 1 ? '100%' : '50%';
+    el.style.transformOrigin = ox + ' ' + oy;
   }
 
   function activate(i){
