@@ -381,7 +381,7 @@ main{position:relative; z-index:1; background:var(--bg); transition:background .
 .col-canvas{
   position:absolute; top:0; left:50%; transform:translateX(-50%);
   width:min(1480px, 92vw);
-  columns:4; column-gap:16px;
+  columns:3; column-gap:18px;
   will-change:transform;
 }
 .col-item{
@@ -820,9 +820,14 @@ function media(src, alt, label, lazy){
     : Array.from({length:12}, (_,i)=>({thumb:'', full:'', name:'кадр '+(i+1)}));
   /* Пока снимков мало, повторяем их по кругу, чтобы коллаж был плотным.
      Добавите фото в папку Drive «web» — плиток станет больше, повторов меньше. */
-  const MIN_TILES = 16;
-  const tiles = Array.from({length: Math.max(src.length, MIN_TILES)},
-                           (_,i)=>({ p: src[i % src.length], idx: i % src.length }));
+  const MIN_TILES = 12;
+  const total = Math.max(src.length, MIN_TILES);
+  /* Сначала все снимки по одному разу, затем добор «вразбивку» (шаг 3),
+     чтобы повторы не оказывались в соседних колонках. */
+  const order = [];
+  for (let i = 0; i < src.length && order.length < total; i++) order.push(i);
+  for (let j = 0; order.length < total; j++) order.push((j * 3 + 1) % src.length);
+  const tiles = order.map(idx => ({ p: src[idx], idx: idx }));
   canvas.innerHTML = tiles.map((t,i)=>{
     const inner = t.p.thumb
       ? `<img src="${t.p.thumb}" alt="Фотосессия — кадр ${t.idx+1}" decoding="async">`
