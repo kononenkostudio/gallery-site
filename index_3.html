@@ -376,8 +376,7 @@ main{position:relative; z-index:1; background:var(--bg); transition:background .
 /* ============ ПОРТФОЛИО: КОЛЛАЖ С «ЛУПОЙ» ============ */
 .col-wrap{width:100vw; margin-left:calc(50% - 50vw); margin-top:34px}
 .col-stage{position:relative; height:100vh; overflow:hidden; background:var(--bg)}
-/* Кадры сохраняют СВОИ пропорции — ничего не обрезается и не сплющивается.
-   Разная высота снимков сама даёт нерегулярную, коллажную раскладку. */
+/* Кадры сохраняют СВОИ пропорции — ничего не обрезается и не сплющивается. */
 .col-canvas{
   position:absolute; top:0; left:50%; transform:translateX(-50%);
   width:min(1480px, 92vw);
@@ -876,7 +875,6 @@ function media(src, alt, label, lazy){
     tl.fromTo(canvas, {y:0}, {y: () => -travel(), ease:'none', duration:1}, 0)
       .to(canvas, {keyframes:{scale:[1, 1.07, 1]}, ease:'sine.inOut', duration:1}, 0);
 
-    /* высота коллажа известна только после загрузки картинок — пересчитываем */
     let pending = items.length;
     const settle = () => { if (--pending <= 0) { ScrollTrigger.refresh(); lens(); } };
     items.forEach(it=>{
@@ -893,6 +891,64 @@ function media(src, alt, label, lazy){
     stage.style.overflow = 'visible';
   }
 })();
+
+/* marquee */
+const cats = ['Индивидуальная','Семейная','Love Story','Бренд'];
+$('#mqTrack').innerHTML = [...cats,...cats,...cats,...cats].map(c=>`<span>${c}</span>`).join('') ;
+/* ================= INSTAGRAM ЛЕНТА =================
+   Если Apps Script уже опубликовал data/instagram.json — показываем настоящие
+   посты (фото и видео) со ссылкой на сам пост. Если нет — как раньше, фото из
+   Drive со ссылкой на профиль. Так лента никогда не бывает пустой. */
+const IG_PROFILE = 'https://www.instagram.com/alyona.photographer.malaga/';
+if (IG_POSTS && IG_POSTS.length){
+  $('#igTrack').innerHTML = IG_POSTS.map((p,i)=>`
+    <a class="ig-tile" href="${p.permalink}" target="_blank" rel="noopener"
+       aria-label="${p.isVideo ? 'Видео' : 'Фото'} в Instagram${p.caption ? ': ' + p.caption.replace(/"/g,'&quot;').slice(0,60) : ''}">
+      <div class="frame">
+        <img class="cover" src="${p.thumb}" alt="Instagram — ${p.isVideo ? 'видео' : 'фото'} ${i+1}" ${i<4?'':'loading="lazy"'} decoding="async" referrerpolicy="no-referrer">
+        ${p.isVideo ? '<span class="ig-play">&#9654;</span>' : ''}
+      </div>
+    </a>`).join('');
+} else {
+  const igList = (IG_TILES && IG_TILES.length) ? IG_TILES : Array(10).fill('');
+  $('#igTrack').innerHTML = igList.map((src,i)=>
+    `<a class="ig-tile" href="${IG_PROFILE}" target="_blank" rel="noopener" aria-label="Instagram фото ${i+1}"><div class="frame">${media(src,'Instagram фото '+(i+1),'ig '+(i+1))}</div></a>`).join('');
+}
+$('#gcalBtn').href = GCAL_URL;
+/* hero featured slideshow */
+(function(){
+  const layer = $('#heroLayer'), dots = $('#heroDots');
+  if (HERO_SLIDES && HERO_SLIDES.length){
+    $('#heroMedia').classList.add('has-photos');
+    layer.insertAdjacentHTML('beforeend', HERO_SLIDES.map((src,i)=>
+      `<div class="hslide${i===0?' on':''}" style="background-image:url('${src}')" role="img" aria-label="${i===0?HERO_ALT:''}"></div>`).join(''));
+    dots.innerHTML = HERO_SLIDES.map((_,i)=>`<i class="${i===0?'on':''}"></i>`).join('');
+    /* preload the rest so the first cross-fade is never a flash of empty space */
+    HERO_SLIDES.slice(1).forEach(src=>{ const im=new Image(); im.src=src; });
+    const slides = [...layer.querySelectorAll('.hslide')], marks = [...dots.querySelectorAll('i')];
+    if (slides.length > 1 && !reduceMotion){
+      let i = 0;
+      setInterval(()=>{
+        const prev = i; i = (i+1) % slides.length;
+        slides[i].classList.add('on');
+        slides[prev].classList.remove('on');
+        marks[prev].classList.remove('on'); marks[i].classList.add('on');
+      }, HERO_INTERVAL);
+    }
+  } else {
+    if (HERO.night) $('.hero-media .night-v').style.backgroundImage = `url("${HERO.night}")`;
+    if (HERO.day)   $('.hero-media .day-v').style.backgroundImage   = `url("${HERO.day}")`;
+    $$('.hero-media .night-v,.hero-media .day-v').forEach(el=>{
+      if (el.style.backgroundImage){ el.style.backgroundSize='cover'; el.style.backgroundPosition='center'; }
+    });
+    dots.style.display = 'none';
+  }
+})();
+if (PORTRAIT.src) $('#bio .portrait .frame').innerHTML = media(PORTRAIT.src, PORTRAIT.alt, '', false);
+$$('.float-ph .frame').forEach((f,i)=>{ if (INTRO_PHOTOS[i]) f.innerHTML = media(INTRO_PHOTOS[i],'',''); });
+if (BAND.src) $('#bandMedia').innerHTML = media(BAND.src, BAND.line1 + ' ' + BAND.line2, '');
+if (BAND.line1) $('#bandL1').textContent = BAND.line1;
+if (BAND.line2) $('#bandL2').textContent = BAND.line2;
 
 /* ================= PRELOADER ================= */
 (function(){
