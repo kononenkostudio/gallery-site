@@ -376,22 +376,34 @@ main{position:relative; z-index:1; background:var(--bg); transition:background .
 /* ============ ПОРТФОЛИО: КОЛЛАЖ С «ЛУПОЙ» ============ */
 .col-wrap{width:100vw; margin-left:calc(50% - 50vw); margin-top:34px}
 .col-stage{position:relative; height:100vh; overflow:hidden; background:var(--bg)}
-/* Кадры сохраняют СВОИ пропорции — ничего не обрезается и не сплющивается. */
+/* Сетка портфолио: на компьютере 8 в ряд, на телефоне 4 в ряд.
+   При прокрутке кадры увеличиваются ПО ОЧЕРЕДИ, один за другим. */
 .col-canvas{
-  position:absolute; top:0; left:50%; transform:translateX(-50%);
-  width:min(1480px, 92vw);
-  columns:3; column-gap:18px;
-  will-change:transform;
+  position:absolute; top:50%; left:50%;
+  transform:translate(-50%,-50%);
+  width:min(1360px, 88vw);
+  display:grid; grid-template-columns:repeat(8,1fr); gap:10px;
 }
 .col-item{
-  break-inside:avoid; -webkit-column-break-inside:avoid; page-break-inside:avoid;
-  position:relative; overflow:hidden; border-radius:3px; cursor:pointer;
-  background:var(--photo-a); margin:0 0 18px; min-height:90px;
+  position:relative; aspect-ratio:1; overflow:hidden; border-radius:3px;
+  cursor:pointer; background:var(--photo-a);
+  filter:brightness(.62) saturate(.85);
+  transition:transform .55s cubic-bezier(.2,.75,.2,1), filter .55s ease, box-shadow .55s ease;
+  will-change:transform, filter;
 }
-.col-item:nth-child(3n){margin-bottom:30px}
-.col-item:nth-child(5n){margin-bottom:24px}
-.col-item img{width:100%; height:auto; display:block; will-change:transform,filter}
-.col-item .ph{width:100%; aspect-ratio:3/4}
+/* активный кадр — крупно, резко и поверх остальных */
+.col-item.is-active{
+  transform:scale(2.6);
+  filter:none;
+  z-index:6;
+  border-radius:2px;
+  box-shadow:0 26px 70px rgba(0,0,0,.5);
+}
+/* соседи слегка подсвечены, чтобы движение читалось */
+.col-item.is-near{filter:brightness(.82) saturate(.95)}
+.col-item img{width:100%; height:100%; object-fit:cover; display:block}
+.col-item .ph{width:100%; height:100%}
+.col-lens{display:none}
 .col-item::after{content:""; position:absolute; inset:0; box-shadow:inset 0 0 0 1px rgba(0,0,0,.07); pointer-events:none}
 /* мягкая «линза»: центр резкий, края уходят в фон */
 .col-lens{position:absolute; inset:0; z-index:3; pointer-events:none;
@@ -401,7 +413,8 @@ main{position:relative; z-index:1; background:var(--bg); transition:background .
 .col-hint{position:absolute; z-index:4; bottom:20px; left:50%; transform:translateX(-50%);
   font-size:10px; font-weight:700; letter-spacing:.24em; text-transform:uppercase; color:var(--ink-soft)}
 .col-static{position:static!important; transform:none!important; margin:0 auto;
-  width:min(1480px,92vw)!important}
+  width:min(1360px,88vw)!important}
+.col-static .col-item{filter:none}
 
 /* ============ ПОЛНОЭКРАННЫЙ ПРОСМОТР ============ */
 #colLb{position:fixed; inset:0; z-index:120; display:none; align-items:center; justify-content:center;
@@ -420,9 +433,8 @@ main{position:relative; z-index:1; background:var(--bg); transition:background .
 #colLb .lb-count{position:absolute; bottom:20px; left:50%; transform:translateX(-50%);
   font-size:11px; letter-spacing:.2em; color:rgba(243,237,228,.72)}
 @media (max-width:900px){
-  .col-canvas{columns:2; column-gap:10px; width:94vw}
-  .col-item{margin-bottom:10px}
-  .col-item:nth-child(3n),.col-item:nth-child(5n){margin-bottom:16px}
+  .col-canvas{grid-template-columns:repeat(4,1fr); gap:7px; width:88vw}
+  .col-item.is-active{transform:scale(2.2); box-shadow:0 16px 40px rgba(0,0,0,.5)}
   #colLb .lb-nav{width:44px; height:44px; font-size:22px; margin-top:-22px}
   #colLb .lb-nav.prev{left:8px} #colLb .lb-nav.next{right:8px}
 }
@@ -807,86 +819,77 @@ function media(src, alt, label, lazy){
     ? `<img class="cover" src="${src}" alt="${(alt||'').replace(/"/g,'&quot;')}" ${lazy===false?'':'loading="lazy" decoding="async"'}>`
     : `<div class="ph" data-label="${label||''}"></div>`;
 }
-/* ================= ПОРТФОЛИО: сборка коллажа ================= */
-/* Плитки НЕ подгоняются под сетку: каждый кадр показан в своих пропорциях. */
+/* ================= ПОРТФОЛИО: сборка сетки =================
+   Показываем ВСЕ снимки из папки Drive «web» одной сеткой:
+   8 в ряд на компьютере, 4 в ряд на телефоне. Чем больше фото
+   добавите в Drive, тем полнее становится сетка. */
 (function(){
   const canvas = document.getElementById('colCanvas');
   if (!canvas) return;
   const src = (typeof COLLAGE !== 'undefined' && COLLAGE.length)
     ? COLLAGE
-    : Array.from({length:12}, (_,i)=>({thumb:'', full:'', name:'кадр '+(i+1)}));
-  /* Пока снимков мало, повторяем их по кругу — коллаж остаётся плотным, без дыр.
-     Добавите фото в папку Drive «web» — плиток станет больше, повторов меньше. */
-  const MIN_TILES = 12;
-  const total = Math.max(src.length, MIN_TILES);
-  /* Сначала все снимки по одному разу, затем добор «вразбивку» (шаг 3),
-     чтобы повторы не оказывались в соседних колонках. */
-  const order = [];
-  for (let i = 0; i < src.length && order.length < total; i++) order.push(i);
-  for (let j = 0; order.length < total; j++) order.push((j * 3 + 1) % src.length);
-  const tiles = order.map(idx => ({ p: src[idx], idx: idx }));
-  canvas.innerHTML = tiles.map((t,i)=>{
-    const inner = t.p.thumb
-      ? `<img src="${t.p.thumb}" alt="Фотосессия — кадр ${t.idx+1}" decoding="async">`
-      : `<div class="ph" data-label="кадр ${t.idx+1}"></div>`;
-    return `<div class="col-item" data-i="${t.idx}">${inner}</div>`;
+    : Array.from({length:16}, (_,i)=>({thumb:'', full:'', name:'кадр '+(i+1)}));
+  canvas.innerHTML = src.map((p,i)=>{
+    const inner = p.thumb
+      ? `<img src="${p.thumb}" alt="Фотосессия — кадр ${i+1}" decoding="async">`
+      : `<div class="ph" data-label="кадр ${i+1}"></div>`;
+    return `<div class="col-item" data-i="${i}">${inner}</div>`;
   }).join('');
 })();
 
-/* ================= ПОРТФОЛИО: скролл-лупа =================
-   Движение одно и предсказуемое: пока секция закреплена, коллаж едет
-   строго снизу вверх — ровно на свою высоту, без метаний в стороны.
-   Поверх — мягкое «дыхание» масштаба, а кадр в центре чуть приближается
-   и светлеет. Это и есть эффект лупы.
-   ========================================================== */
+/* ================= ПОРТФОЛИО: увеличение по очереди =================
+   Пока секция закреплена, прокрутка перебирает кадры ОДИН ЗА ДРУГИМ:
+   каждый по очереди выезжает вперёд под «лупой». Когда очередь дошла
+   до последнего — секция отпускается и страница едет дальше вниз.
+   ================================================================== */
 (function(){
-  const stage = document.getElementById('colStage'), canvas = document.getElementById('colCanvas');
-  if (!stage || !canvas) return;
-  const items = [...canvas.querySelectorAll('.col-item')];
+  const stage = document.getElementById('colStage'), grid = document.getElementById('colCanvas');
+  if (!stage || !grid) return;
+  const cells = [...grid.querySelectorAll('.col-item')];
+  if (!cells.length) return;
 
-  const travel = () => Math.max(0, canvas.offsetHeight - stage.offsetHeight);
+  const PER_TILE = 130;               /* сколько пикселей прокрутки на один кадр */
+  let current = -1;
 
-  function lens(){
-    const r = stage.getBoundingClientRect();
-    const cy = r.top + r.height/2;
-    const reach = r.height * 0.62;
-    for (const it of items){
-      const b = it.getBoundingClientRect();
-      const d = Math.abs((b.top + b.height/2) - cy);
-      const t = Math.max(0, 1 - d/reach);
-      const el = it.firstElementChild;
-      if (!el) continue;
-      el.style.transform = 'scale(' + (1 + 0.09*t).toFixed(3) + ')';
-      el.style.filter    = 'brightness(' + (0.84 + 0.16*t).toFixed(3) + ')';
-    }
+  function colCount(){
+    return getComputedStyle(grid).gridTemplateColumns.split(' ').filter(Boolean).length || 8;
+  }
+
+  /* чтобы увеличенный кадр с краю не обрезался, растим его «внутрь» */
+  function setOrigin(el, i){
+    const cols = colCount(), rows = Math.ceil(cells.length / cols);
+    const col = i % cols, row = Math.floor(i / cols);
+    el.style.transformOrigin =
+      (col === 0 ? '0%' : col === cols - 1 ? '100%' : '50%') + ' ' +
+      (row === 0 ? '0%' : row === rows - 1 ? '100%' : '50%');
+  }
+
+  function activate(i){
+    if (i === current) return;
+    current = i;
+    cells.forEach((el, k) => {
+      el.classList.toggle('is-active', k === i);
+      el.classList.toggle('is-near', k === i - 1 || k === i + 1);
+      if (k === i) setOrigin(el, k);
+    });
   }
 
   if (hasGSAP && !reduceMotion && typeof ScrollTrigger !== 'undefined'){
-    /* x:0 обязателен — иначе GSAP прибавит свой сдвиг к translateX(-50%) из CSS
-       и коллаж уедет влево на всю свою ширину. */
-    gsap.set(canvas, { x:0, xPercent:-50, transformOrigin:'50% 50%' });
-
-    const tl = gsap.timeline({ scrollTrigger:{
-      trigger: stage, start:'top top',
-      end: () => '+=' + Math.max(travel(), window.innerHeight * 0.8),
-      pin: true, scrub: 0.7, invalidateOnRefresh: true,
-      onUpdate: lens, onRefresh: lens
-    }});
-    tl.fromTo(canvas, {y:0}, {y: () => -travel(), ease:'none', duration:1}, 0)
-      .to(canvas, {keyframes:{scale:[1, 1.07, 1]}, ease:'sine.inOut', duration:1}, 0);
-
-    let pending = items.length;
-    const settle = () => { if (--pending <= 0) { ScrollTrigger.refresh(); lens(); } };
-    items.forEach(it=>{
-      const img = it.querySelector('img');
-      if (!img || img.complete) return settle();
-      img.addEventListener('load', settle, {once:true});
-      img.addEventListener('error', settle, {once:true});
+    ScrollTrigger.create({
+      trigger: stage, start: 'top top',
+      end: () => '+=' + (cells.length * PER_TILE),
+      pin: true, invalidateOnRefresh: true,
+      onUpdate: self => {
+        const i = Math.min(cells.length - 1, Math.floor(self.progress * cells.length));
+        activate(i);
+      },
+      onLeave: () => activate(cells.length - 1),
+      onLeaveBack: () => activate(-1)
     });
-    window.addEventListener('resize', ()=>{ ScrollTrigger.refresh(); lens(); });
-    lens();
+    activate(0);
   } else {
-    canvas.classList.add('col-static');
+    /* без анимации — просто ровная сетка */
+    grid.classList.add('col-static');
     stage.style.height = 'auto';
     stage.style.overflow = 'visible';
   }
@@ -961,8 +964,6 @@ if (BAND.line2) $('#bandL2').textContent = BAND.line2;
   function finish(){
     if (done) return; done = true;
     document.body.classList.remove('locked');
-    /* страховка: если вкладка была в фоне, GSAP-анимация может не отработать,
-       поэтому прелоадер снимаем и напрямую, не дожидаясь onComplete */
     setTimeout(()=>{ const pl = $('#preloader'); if (pl) pl.style.display='none'; }, 1200);
     if (hasGSAP && !reduceMotion){
       gsap.to('#preloader',{clipPath:'inset(0 0 100% 0)',duration:1,ease:'expo.inOut',
