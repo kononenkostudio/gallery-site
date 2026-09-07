@@ -1,0 +1,20 @@
+{
+  "slug": "robert",
+  "clientName": "Ekaterina",
+  "info": {
+    "client": "Ekaterina",
+    "date": "06.06.2026",
+    "location": "Malaga, Spain"
+  },
+  "photoCount": 1,
+  "updatedAt": "2026-09-07T07:52:58.267Z",
+  "photos": [
+    {
+      "id": "1cogp_OUMJ2CUwVhA6AlqvOyJrmEEoHk0",
+      "name": "Copy of IMG_5716.jpg",
+      "mimeType": "image/jpeg",
+      "type": "image",
+      "updatedAt": "2026-09-07T07:49:02.441Z"
+    }
+  ]
+}
