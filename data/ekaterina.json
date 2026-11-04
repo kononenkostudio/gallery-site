@@ -1,9 +1,13 @@
 {
   "slug": "ekaterina",
   "clientName": "Ekaterina",
-  "info": {},
+  "info": {
+    "client": "Ekaterina",
+    "date": "06.06.2026",
+    "location": "Malaga, Spain"
+  },
   "photoCount": 90,
-  "updatedAt": "2026-11-04T15:53:36.203Z",
+  "updatedAt": "2026-11-04T16:23:04.872Z",
   "photos": [
     {
       "id": "122rNQ0mYt_lrPH5oVDmrGlm3bjRvY5KM",
