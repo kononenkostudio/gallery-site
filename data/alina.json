@@ -1,9 +1,13 @@
 {
   "slug": "alina",
   "clientName": "Alina",
-  "info": {},
+  "info": {
+    "client": "Alina",
+    "date": "18.04.2026",
+    "location": "Benalmadena, Spain"
+  },
   "photoCount": 76,
-  "updatedAt": "2026-11-17T11:23:18.307Z",
+  "updatedAt": "2026-11-17T11:53:34.718Z",
   "photos": [
     {
       "id": "1cQ5Ld9mRYJgNnmGRzs51d1QTw0j1O3Uk",
